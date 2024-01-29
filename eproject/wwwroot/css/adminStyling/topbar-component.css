@@ -1,0 +1,55 @@
+﻿.topbar-component {
+    grid-area: topbar;
+    background-color: whitesmoke;
+    border-radius: var(--baseNum);
+    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.57);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+    overflow-y: hidden;
+}
+
+.navigator{
+    font-family: var(--titleFont);
+    text-transform: capitalize;
+    font-size: calc(var(--largeNum) - 4px);
+}
+.navigator.animate{
+    animation: top-to-bottom 2s ease;
+}
+
+@keyframes top-to-bottom{
+    0%, 100%{
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(100px) scale(.3);
+        opacity: 0;
+    }
+}
+
+.searchBar{
+    width: 30%;
+    display: flex;
+    border-radius: var(--baseNum);
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.66);
+}
+
+.searchBar input{
+    flex: 4;
+    height: 32px;
+    border: none;
+    outline: none;
+    padding-left: var(--baseNum);
+    font-family: var(--baseFont);
+}
+
+.searchBar span{
+    flex: 1;
+    display: grid;
+    place-items: center;
+}

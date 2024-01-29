@@ -1,0 +1,53 @@
+@font-face{
+    font-family: Raleway;
+    src: url('/lib/fonts/Raleway-Medium.ttf');
+}
+
+@font-face{
+    font-family: Poppins;
+    src: url('/lib/fonts/Poppins-Medium.ttf');
+}
+
+@font-face{
+    font-family: Dosis;
+    src: url('/lib/fonts/Dosis-Medium.ttf');
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --colorPallete: red;
+    --line: 1px solid red;
+    --smallNum: 5px;
+    --baseNum: 10px;
+    --medNum: 14px;
+    --largeNum: 25px;
+    --baseFont: Poppins;
+    --secondFont: Raleway;
+    --titleFont: Dosis;
+}
+
+html{
+  position: relative;
+}
+
+.bgBox{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(3px);
+    background-color: palegoldenrod;
+}
+.imgageholder{
+    overflow: hidden;
+}
+.imgageholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

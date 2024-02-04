@@ -1,0 +1,91 @@
+@import "../float.css";
+main{
+    display: grid;  
+    grid-template-areas: "navbar" "signup" "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr .5fr;
+    width: 100%;
+    height: 100vh;
+}
+
+form{
+    width: 90%;
+    max-width: 500px;
+    min-width: 320px;
+    height: max-content;
+    padding: var(--smallNum);
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+
+label{
+    flex: 1;
+}
+
+input[type="text"], input[type="number"], input[type="password"],input[type="email"]{
+    height: 35px;
+    border-radius: var(--medNum);
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0 var(--medNum);
+    margin-bottom: var(--smallNum);
+    background-color: var(--tertiaryPallete);
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    display: none;
+}
+input.fail{
+    border: var(--line);
+    background-color: var(--fail-red);
+    animation: shake linear .1s;
+    animation-iteration-count: 3;
+}
+label p{
+    margin-left: var(--medNum);
+    font-size: calc(var(--medNum) - 2px);
+    color: var(--err-red);
+}
+label p::first-letter{
+    text-transform: capitalize;
+}
+form button{
+    height: 30px;
+    border-radius: var(--medNum );
+    background-color: var(--quadtiaryPallete);
+    color: var(--tertiaryPallete);
+    width: 200px;
+    align-self: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+form button.closed{
+    opacity: .5;
+    pointer-events: none;
+}
+.largeErrormsg{
+    border: var(--line);
+    font-size: calc(var(--medNum) - 2px);
+    text-align: center;
+    width: max-content;
+    align-self: center;
+    padding: var(--smallNum);
+    background-color: var(--fail-red);
+    border-radius: var(--smallNum);    
+}
+.largeErrormsg::first-letter{
+    text-transform: capitalize;
+}
+.signFoot{
+    display: flex;
+    font-size: var(--medNum);
+    gap: var(--medNum);
+    align-self: flex-end;
+}
+.signFoot a{
+    text-decoration: none;
+    color: var(--quadtiaryPallete);
+    font-size: calc(var(--medNum) + 2px);
+}

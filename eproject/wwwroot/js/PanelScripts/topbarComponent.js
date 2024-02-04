@@ -1,16 +1,18 @@
-﻿import { Controller, animateAndDo } from "../services/Controler.js"
+﻿import { Controller } from "../services/Controller.js"
 import { animateAndDo } from "../services/library.js"
-export default class TopbarController extends Controller {
+
+
+export default class TopbarComponent extends Controller {
 
     constructor(parentElement) {
-        super(parentElement , "topbar", () => this.#starter())
+        super(parentElement , "panel=topbar", () => this.#starter())
     }
 
     #starter() {
 
     }
 
-    navigateTo(location) {
+    navigateTo(location) {  
         const navtigateView = this.domElement.querySelector(".navigator")
         animateAndDo(navtigateView, () => {
             navtigateView.textContent = location

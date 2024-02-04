@@ -1,0 +1,55 @@
+.signup-component{
+    display: grid;
+    place-items: center;   
+}
+.twoInputHold{
+    display: flex;
+    gap: var(--medNum);
+}
+.twoRadioHold{
+    display: flex;
+    gap: var(--largeNum);
+    align-items: center;
+}
+.twoRadioHold label{
+    flex: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 var(--medNum);
+}
+.twoRadioHold label p{
+    font-size: var(--medNum);
+}
+.twoRadioHold label input{
+    width: 40px;
+}
+.twoRadioHold label span{
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--tertiaryPallete);
+    display: block;
+}
+.twoRadioHold label span.active{
+    border: solid var(--tertiaryPallete) 3px;
+    background-color: var(--quadtiaryPallete);
+}
+.numInp{
+    display: flex;
+    background-color: var(--tertiaryPallete);
+    border-radius: var(--medNum);
+    display: flex;
+    align-items: center;
+}
+.numInp p{
+    color: var(--quadtiaryPallete);
+    font-size: var(--medNum);
+    border-right: solid 1px gray;
+    padding-right: var(--medNum);
+}
+.numInp input{
+    margin: 0;
+}

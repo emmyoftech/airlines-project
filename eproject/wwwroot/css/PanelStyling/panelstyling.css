@@ -1,0 +1,16 @@
+﻿.AdminPanel{
+    width: 100%;
+    height: 100dvh;
+    display: grid;
+    grid-template-areas: "sidebar topbar" "sidebar body";
+    grid-template-rows: 1fr 12fr;
+    grid-template-columns: 1fr 8fr;
+    gap: var(--baseNum);
+    padding: var(--smallNum);
+}
+
+.body {
+    grid-area: body;
+    background-color: whitesmoke;
+    border-radius: var(--baseNum);
+}

@@ -1,3 +1,6 @@
+@import "/css/animations.css";
+@import "/css/float.css";
+
 @font-face{
     font-family: Raleway;
     src: url('/lib/fonts/Raleway-Medium.ttf');
@@ -20,8 +23,13 @@
 }
 
 :root{
-    --colorPallete: red;
-    --line: 1px solid red;
+    --primaryPallete: #EEE8AA;
+    --secondaryPallete: #95951B;
+    --tertiaryPallete: #FCFAEA;
+    --quadtiaryPallete: #1B3D2F;
+    --err-red: #B22222;
+    --fail-red: #fdf6f6;
+    --line: 1px solid var(--err-red);
     --smallNum: 5px;
     --baseNum: 10px;
     --medNum: 14px;
@@ -41,7 +49,7 @@ html{
     height: 100%;
     z-index: -1;
     filter: blur(3px);
-    background-color: palegoldenrod;
+    background-color: #eee8aa;
 }
 .imgageholder{
     overflow: hidden;
@@ -49,5 +57,21 @@ html{
 .imgageholder img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+.logoTab{
+    grid-area: profile;
+    display: flex;
+    align-items: center;
+    padding: var(--baseNum);
+    gap: var(--smallNum);
+    font-family: var(--secondFont);
+    font-size: var(--medNum);
+    color: var(--quadtiaryPallete);
+}
+.logoTab img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     object-fit: cover;
 }

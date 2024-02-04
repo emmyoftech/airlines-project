@@ -1,39 +1,36 @@
 let env = {
-    adminpanelComponentDomLocation: "/lib/partialHtmlparts/adminpartials/",
+    api_endpoint:"/Api/",
+
+    panelPartials: "/lib/partialHtmlparts/panelpartials/",
+
+    authPartials: "/lib/partialHtmlparts/authpartials",
+
+    sharredPartials: "/lib/partialHtmlparts/sharedpartials",
+    
+    panelPartialsStyles: "/css/PanelStyling/",
+    
+    authPartialsStyles: "/css/AuthStyling/",
+    
+    sharedPartialsStyles: "/css/sharedStyling/",
+    
+    links: {
+        panel: '/Panel',
+        home: '/'
+    },
+    
     adminRoleLinks: [
         {
             link: "dashboard",
             icon: {
-                name: "dashboard",
+                class: "fa-table-cells-large",
                 type: "solid"
             }
         },
         {
-            link: "profile",
+            link: "planes",
             icon: {
-                name: "user",
+                class: "fa-plane",
                 type: "solid"
-            }
-        },
-        {
-            link: "users",
-            icon: {
-                name: "user-plus",
-                type: "solid"
-            }
-        },
-        {
-            link: "products",
-            icon: {
-                name: "purchase-tag-alt",
-                type: "solid"
-            }
-        },
-        {
-            link: "linked lists",
-            icon: {
-                name: "link",
-                type: null
             }
         }
     ],
@@ -41,7 +38,7 @@ let env = {
         {
             link: "dashboard",
             icon: {
-                name: "dashboard",
+                class: "dashboard",
                 type: "solid"
             }
         }

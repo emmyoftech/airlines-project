@@ -1,0 +1,81 @@
+﻿.float {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    top: 0%;
+    background: rgba(0,0,0,.3);
+}
+
+.dialog, .ques, .load{
+    width: 90%;
+    max-width: 400px;
+    height: max-content;
+    min-height: 250px;
+    border-radius: var(--medNum);
+    background-color: var(--tertiaryPallete);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--medNum);
+    overflow: hidden;
+}
+.dialog-icon-hold{
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    border: solid 1px;
+    border-radius: 50%;
+}
+.dialog-icon-hold.msg{
+    display: none;
+}
+.dialog-title, .ques-title{
+    text-transform: capitalize;
+}
+.dialog-text::first-letter, .ques-text::first-letter{
+    text-transform: capitalize;
+}
+.dialog-btn{
+    padding: var(--smallNum) var(--medNum);
+    text-transform: capitalize;
+    background-color: var(--quadtiaryPallete);
+    border: none;
+    outline: none;
+    color: var(--tertiaryPallete);
+    border-radius: var(--smallNum);
+    cursor: pointer;
+}
+.ques button, .load button{
+    padding: var(--smallNum) var(--largeNum);
+    border-radius: var(--medNum);
+    border: solid 1px var(--quadtiaryPallete);
+    color: var(--quadtiaryPallete);
+    outline: none;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin: 0 var(--medNum);
+    margin-top: var(--medNum);
+    background-color: var(--tertiaryPallete);
+}
+
+.ques button:nth-child(2){
+    background-color: var(--quadtiaryPallete);
+    color: var(--tertiaryPallete);
+}
+
+.load-sect{
+    gap: var(--smallNum);
+    display: flex;
+    margin-bottom: var(--largeNum);
+}
+.load-sect li{
+    width: 5px;
+    list-style: none;
+    height: 20px;
+    background-color: var(--quadtiaryPallete);
+    animation: animateLoader .7s infinite alternate;
+}

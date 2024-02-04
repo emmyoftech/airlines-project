@@ -7,8 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\services\float.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\services\float.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\AuthScripts\" />
     <Folder Include="wwwroot\lib\images\dynamic\" />
     <Folder Include="wwwroot\lib\images\static\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\services\float.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

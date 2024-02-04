@@ -2,7 +2,7 @@
 
 namespace eproject.Controllers
 {
-    public class AdminController : Controller
+    public class PanelController : Controller
     {
         public IActionResult Index()
         {

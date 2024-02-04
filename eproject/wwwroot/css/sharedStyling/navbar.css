@@ -1,0 +1,61 @@
+.navbar-component{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--medNum);
+    align-items: center;
+}
+.authBtnHold{
+    width: max-content;
+    display: flex;
+    gap: var(--medNum);
+}
+.authBtnHold a{
+    text-decoration: none;
+    padding: var(--smallNum) var(--medNum);
+    border-radius: var(--medNum);
+    border: none;
+    text-transform: capitalize;
+    background-color: var(--tertiaryPallete);
+    color: var(--quadtiaryPallete);
+}
+.authBtnHold #su{
+    background-color: var(--quadtiaryPallete);
+    color: var(--tertiaryPallete);
+}
+.nav-links-hold{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    gap: var(--largeNum);
+}
+.nav-links-hold li{
+    list-style: none;
+}
+.nav-links-hold li a{
+    color: var(--quadtiaryPallete);
+    text-transform: capitalize;
+    text-decoration: none;
+    font-family: var(--secondFont);
+    font-size: var(--medNum);
+    position: relative;
+}
+
+.nav-links-hold li{
+    position: relative;
+}
+
+.nav-links-hold li::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -10px;
+    opacity: 0;
+    background-color: var(--tertiaryPallete);
+    transition: .3s;
+}
+
+.nav-links-hold li:hover::before{
+    bottom: 0;
+    opacity: 1;
+}

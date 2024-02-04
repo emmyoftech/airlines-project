@@ -1,0 +1,48 @@
+
+<form>
+    <div class="twoInputHold">
+        <label>
+            <input type="text" placeholder="Enter Firstname..." id="firname">
+            <p class="err-msg"></p>
+        </label>
+        <label>
+            <input type="text" placeholder="Enter Lastname..." id="lasname">
+            <p class="err-msg"></p>
+        </label>
+    </div>
+    <div class="twoRadioHold">
+        <label for="malePick">
+            <p>male</p>
+            <span></span>
+            <input type="radio" name="gender" value="male" id="malePick" hidden>
+        </label>
+        <label for="femalePick">
+            <p>femaie </p>
+            <span></span>
+            <input type="radio" name="gender" value="femaie" id="femalePick" hidden>
+        </label>
+    </div>
+    <label>
+        <input type="email" placeholder="Email..." id="email">
+        <p class="err-msg"></p>
+    </label>
+    <label>
+        <div class="numInp">
+            <p>+234</p>
+            <input type="number" placeholder="Phone..." id="phNum">
+        </div>
+        <p class="err-msg"></p>
+    </label>
+    <button type="submit" class="closed" id="subBtn">
+      <p>next</p>
+      <i class="fa-solid caret-right"></i>  
+    </button>
+    <div class="signFoot">
+        <p>i already have an account?</p>
+        <a href="/Auth/signin">Sign in</a>
+    </div>
+</form>
+<!-- <p class="pass-point">Must be at least more than 5 characters</p>
+        <p class="pass-point">Must have a symbol</p>
+        <p class="pass-point">Must have a number</p>
+        <p class="pass-point">Must have captial letters</p> -->

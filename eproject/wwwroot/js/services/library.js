@@ -32,5 +32,4 @@ export function animateAndDo(animateTarget, run, args) {
             animateTarget.style.animation = ""
         }
     }, { once: true })
-
 }

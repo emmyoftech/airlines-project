@@ -1,12 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eproject.Data;
+using eproject.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace eproject.Controllers
 {
     public class ApiController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _db;
+
+        public ApiController(ApplicationDbContext db) {
+            _db = db;
+        }
+        public IActionResult getUsers()
         {
-            return View();
+            List<User> users = _db.Users.ToList();
+            if(users.Count > 0)
+            {
+                return Json(users);
+            }
+            else
+            {
+                var message = new  { message = "nodata" };
+                return Json(message);
+            }
         }
     }
 }

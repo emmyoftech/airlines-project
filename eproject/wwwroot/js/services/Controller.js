@@ -90,6 +90,7 @@ export class Controller {
             this.domElement.style.gridArea = this.componentName
             this.parentDomELement.append(this.domElement)
             this.isInitiated = true
+            this.domElement = document.querySelector(`.${this.componentName}-component`)
             if (init) init()
         }).catch((err) => console.error(err))
     }

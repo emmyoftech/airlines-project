@@ -17,8 +17,7 @@ export function isEmailValid(inputDom){
 }
 
 export function isPhoneNumberValid(inputDom){
-    console.log(inputDom.value)
-    return !isInputEmpty(inputDom) && inputDom.value.length < 11 && inputDom.value.length > 3
+    return !isInputEmpty(inputDom) && inputDom.value.length == 10
 }
 
 /**
@@ -28,8 +27,8 @@ export function isPhoneNumberValid(inputDom){
  * @param {string} msg 
  *  Message to be looed out
  */
-export function inputErrLogger(inputDom, msg){
-    inputDom.classList.add("fail")
+export function inputErrLogger(inputDom, msg, noFail = null){
+    if(noFail == null)inputDom.classList.add("fail")
     getErrMsgContainer(inputDom).textContent = msg
 }
 
@@ -46,4 +45,23 @@ export function inputErrloggerRemover(inputDom){
 
 function getErrMsgContainer(inputDom){
     return inputDom.closest("label").querySelector(".err-msg")
+}
+
+export function isPasswordValid(inputDom){
+    const value = inputDom.value,
+    passRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).+$/;
+    return !isInputEmpty(inputDom) && value.length > 5 && passRegex.test(value)
+}
+
+export function enableEyeToggle(inputDom){
+    let eye = inputDom.parentElement.querySelector("i")
+    eye.onclick = ()=>{
+        if(inputDom.type == "text"){
+            inputDom.type = "password"
+            eye.classList.replace("fa-eye-slash", "fa-eye")
+        }else{
+            inputDom.type = "text"
+            eye.classList.replace("fa-eye", "fa-eye-slash")   
+        }
+    }
 }

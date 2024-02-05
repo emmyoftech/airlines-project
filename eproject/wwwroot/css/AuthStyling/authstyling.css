@@ -8,12 +8,18 @@ main{
     height: 100vh;
 }
 
-form{
+.form{
     width: 90%;
     max-width: 500px;
     min-width: 320px;
     height: max-content;
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
     padding: var(--smallNum);
+}
+.auth-stage{
+    width: 100%;
     display: flex;
     flex-flow: column;
     gap: var(--medNum);
@@ -51,8 +57,13 @@ label p{
 label p::first-letter{
     text-transform: capitalize;
 }
-form button{
+.form button{
     height: 30px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: var(--medNum );
     background-color: var(--quadtiaryPallete);
     color: var(--tertiaryPallete);
@@ -60,8 +71,9 @@ form button{
     align-self: center;
     text-transform: uppercase;
     cursor: pointer;
+    gap: var(--smallNum);
 }
-form button.closed{
+.form button.closed{
     opacity: .5;
     pointer-events: none;
 }
@@ -88,4 +100,24 @@ form button.closed{
     text-decoration: none;
     color: var(--quadtiaryPallete);
     font-size: calc(var(--medNum) + 2px);
+}
+
+.passCon{
+    display: flex;
+    background-color: var(--tertiaryPallete);
+    border-radius: var(--medNum);
+    align-items: center;
+    gap: var(--medNum);
+    padding: 0 var(--medNum);
+    margin-bottom: var(--smallNum);
+}
+.passCon input{
+    margin: 0;
+}
+.pass-point{
+    color: black;
+    margin: var(--smallNum) var(--medNum);
+}
+.pass-point.active{
+    color: green;
 }

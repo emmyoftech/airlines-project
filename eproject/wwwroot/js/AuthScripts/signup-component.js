@@ -1,5 +1,6 @@
 import { Controller } from "../services/Controller.js";
 import { 
+    enableEyeToggle,
     inputErrLogger, 
     inputErrloggerRemover, 
     isEmailValid, 
@@ -15,7 +16,7 @@ export default class signupComponent extends Controller {
     }
 
     #starter() {
-        this.#stage1()
+        this.#stage2(new User())
     }
 
     #stage1() {
@@ -23,8 +24,17 @@ export default class signupComponent extends Controller {
             firstNameDom = this.domElement.querySelector("#firname"),
             lastNameDom = this.domElement.querySelector("#lasname"),
             email = this.domElement.querySelector("#email"),
-            phoneNumder = this.domElement.querySelector("#"),
-            user = new User()
+            phoneNumder = this.domElement.querySelector("#phNum"),
+            user = new User(),
+            save_to_stage2 = ()=> {
+                user.setFirstName(firstNameDom.value)
+                user.setLastName(lastNameDom.value)
+                user.setPhoneNumber(phoneNumder.value)
+                user.setEmail(email.value)
+                
+                this.#stage2(user)
+            }
+
 
         this.domElement.querySelectorAll("input").forEach(item => {
             item.oninput = () => {
@@ -42,7 +52,7 @@ export default class signupComponent extends Controller {
                         inputErrLogger(item, msg)
                     }
                 }else if(item.id == "phNum"){
-                    if(isInputEmpty(item) || item.value.length > 10){
+                    if(isInputEmpty(item) || item.value.length > 11){
                         let msg = "phone number must be 10 digits"
                         inputErrLogger(item, msg)
                     }else{
@@ -54,14 +64,6 @@ export default class signupComponent extends Controller {
                     !isInputEmpty(lastNameDom) &&
                     isEmailValid(email) &&
                     isPhoneNumberValid(phoneNumder) , () => save_to_stage2())
-                inpCheck()
-            }
-                            
-            function inpCheck(){
-                console.log("firstN " + ":" + !isInputEmpty(firstNameDom))
-                console.log("lastn " + ":" + !isInputEmpty(lastNameDom))
-                console.log("email " + ":" + isEmailValid(email))
-                console.log("phone " + ":" + isPhoneNumberValid(phoneNumder))
             }
         })
 
@@ -86,15 +88,6 @@ export default class signupComponent extends Controller {
                 user.setGender(item.value)
             }
         })
-
-        function save_to_stage2(){
-            user.setFirstName(firstNameDom.value)
-            user.setLastName(lastNameDom.value)
-            user.setPhoneNumber(phoneNumder.value)
-            user.setEmail(email.value)
-            
-            this.#stage2(user)
-        }
     }
 
     /**
@@ -103,14 +96,70 @@ export default class signupComponent extends Controller {
      *  Takes a user object as parameter
      */
     #stage2(userObject){
-        console.log(userObject.getFirstName())
-        console.log(userObject.getLastName())
-        console.log(userObject.getPhoneNumber())
-        console.log(userObject.getEmail())
-        console.log(userObject.getGender())
+        this.#openButton(false)
+        const passWord = this.domElement.querySelector("#pass"),
+        conpass = this.domElement.querySelector("#conpass"),
+        hasSymbolReg = /^(?=.*[^A-Za-z0-9]).+$/,
+        hasCapitalLetterReg = /.*[A-Z].*/,
+        hasNumberReg = /^(?=.*[0-9]).+$/,
+        save_to_stage3 = ()=>{
+            userObject.setPassword(passWord.value)
+            this.#stage3(userObject)
+        }
+
+
+        passWord.oninput = (e)=>{
+            const value = e.target.value,
+            passPoints = this.domElement.querySelectorAll(".pass-point")
+
+            this.#openButton(isPhoneNumberValid(e.target) && e.target.value == conpass.value, ()=> save_to_stage3())
+
+            if(value.length > 5){
+                passPoints.item(0).classList.add("active")
+            }else{
+                passPoints.item(0).classList.remove("active")
+            }
+
+            if(hasSymbolReg.test(value)){
+                passPoints.item(1).classList.add("active")
+            }else{
+                passPoints.item(1).classList.remove("active")
+            }
+
+            if(hasNumberReg.test(value)){
+                passPoints.item(2).classList.add("active")
+            }else{
+                passPoints.item(2).classList.remove("active")
+            }
+
+            if(hasCapitalLetterReg.test(value)){
+                passPoints.item(3).classList.add("active")
+            }else{
+                passPoints.item(3).classList.remove("active")
+            }
+        }
+
+        conpass.oninput = (e)=>{
+            this.#openButton(isPhoneNumberValid(passWord) && e.target.value == passWord.value, ()=> save_to_stage3())
+//conttinue
+            if(passWord.value != e.target.value){
+                inputErrLogger(e.target, "invalid password", true)
+            }else{
+                inputErrloggerRemover(e.target)
+            }
+        }
+
+        
+        enableEyeToggle(passWord)
+        enableEyeToggle(conpass)
     }
 
-    #openButton(valid, run) {
+    #stage3(userObject){
+        console.log(userObject)
+    }
+
+    #openButton(valid, run = null) {
+        if(run == null) return  this.domElement.querySelector("#subBtn").classList.add("closed")
         if (valid) {
             this.domElement.querySelector("#subBtn").classList.remove("closed")
             this.domElement.querySelector("#subBtn").onclick = ()=> run()

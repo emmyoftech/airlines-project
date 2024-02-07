@@ -53,3 +53,39 @@
 .numInp input{
     margin: 0;
 }
+
+.code-wrapper{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: var(--medNum);
+}
+.email-msg{
+    font-family: var(--titleFont);
+    max-width: 300px;
+    text-align: center;
+}
+.email-msg span{
+    color: var(--err-red);
+}
+.code-input-box-container{
+    display: flex;
+    gap: var(--medNum);
+    margin: var(--largeNum) 0;
+    pointer-events: none;
+}
+.code-input-box-container input{
+    width: 40px;
+    height: 40px;
+    font-size: calc(var(--largeNum) * 1);
+}
+.code-btns{
+    display: flex;
+    justify-content: center;
+    gap: var(--medNum);
+}
+.code-btns button{
+    width: max-content;
+    padding: 0 var(--largeNum);
+    font-size: var(--baseNum);
+}

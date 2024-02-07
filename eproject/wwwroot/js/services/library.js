@@ -33,3 +33,43 @@ export function animateAndDo(animateTarget, run, args) {
         }
     }, { once: true })
 }
+
+/**
+ * 
+ * @param {HTMLButtonElement} button 
+ */
+export function buttonLoad(button, loadText=null){
+    let i = button.querySelector("i"),
+    p = button.querySelector("p"),
+    formerIclass = i==null ? null : i.className,
+    formerBtntext = p.textContent
+
+
+    if(i == null){
+        let newIElement = document.createElement("i")
+        newIElement.className = "fa-solid fa-spinner"
+        newIElement.style.animation = "spin 1s linear infinte"
+        button.append(newIElement)
+
+        p.textContent = loadText == null ? "loading...": loadText
+    }else{
+        p.textContent = "loading..."
+        i.className = "fa-solid fa-spinner"
+    }
+    let timeline = gsap.timeline({repeat: -1, ease: "linear"})
+        timeline.to(i, {rotation: 360, duration: 2})
+    button.style.pointerEvents = "none"
+
+    return {stopButtonLoad: (run=null, )=>{
+        if(formerIclass != null){
+            i.className = formerIclass
+            i.style.transform = "rotate(0deg)"
+        }else{
+            button.querySelector("i").remove()
+        }
+        button.style.pointerEvents = "all"
+        p.textContent = formerBtntext
+        timeline.kill()
+        if(run) run()
+    }}
+}

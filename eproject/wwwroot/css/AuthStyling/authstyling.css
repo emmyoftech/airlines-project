@@ -17,6 +17,7 @@ main{
     flex-flow: column;
     gap: var(--medNum);
     padding: var(--smallNum);
+    overflow-x: hidden;
 }
 .auth-stage{
     width: 100%;
@@ -94,6 +95,7 @@ label p::first-letter{
     display: flex;
     font-size: var(--medNum);
     gap: var(--medNum);
+    font-family: var(--secondFont);
     align-self: flex-end;
 }
 .signFoot a{
@@ -116,8 +118,19 @@ label p::first-letter{
 }
 .pass-point{
     color: black;
+    font-family: var(--secondFont);
     margin: var(--smallNum) var(--medNum);
 }
 .pass-point.active{
     color: green;
+}
+.authMainErrMsg{
+    text-align: center;
+    justify-content: center;
+    font-family: var(--secondFont);
+    background-color: var(--fail-red);
+    color: var(--err-red);
+    padding: var(--smallNum);
+    border-radius: var(--smallNum);
+    font-size: var(--medNum);
 }

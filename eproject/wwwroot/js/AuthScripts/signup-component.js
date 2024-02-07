@@ -8,6 +8,7 @@ import {
     isPhoneNumberValid
 } from "../services/validation.js";
 import User from "../interfaces/user.js"
+import { authMainError } from "./authService.js";
 
 
 export default class signupComponent extends Controller {
@@ -16,7 +17,9 @@ export default class signupComponent extends Controller {
     }
 
     #starter() {
-        this.#stage2(new User())
+        let user = new User()
+        user.setEmail("emmanuelbowofoluwa@gmail.com")
+        this.#stage3(user, 234546)
     }
 
     #stage1() {
@@ -106,8 +109,6 @@ export default class signupComponent extends Controller {
             userObject.setPassword(passWord.value)
             this.#stage3(userObject)
         }
-
-
         passWord.oninput = (e)=>{
             const value = e.target.value,
             passPoints = this.domElement.querySelectorAll(".pass-point")
@@ -141,7 +142,6 @@ export default class signupComponent extends Controller {
 
         conpass.oninput = (e)=>{
             this.#openButton(isPhoneNumberValid(passWord) && e.target.value == passWord.value, ()=> save_to_stage3())
-//conttinue
             if(passWord.value != e.target.value){
                 inputErrLogger(e.target, "invalid password", true)
             }else{
@@ -154,18 +154,80 @@ export default class signupComponent extends Controller {
         enableEyeToggle(conpass)
     }
 
-    #stage3(userObject){
-        console.log(userObject)
+    #stage3(userObject, number){
+        this.#hideMainSubBtn()
+        this.domElement.querySelector("#previewmail").textContent = userObject.getEmail()
+        const 
+        allinpsContainer = this.domElement.querySelector(".code-wrapper"),
+        allCodeInps = this.domElement.querySelectorAll(".code-inp"),
+        back_retrybutton = this.domElement.querySelector("#back-retryEmail"),
+        change_nextButton = this.domElement.querySelector("#next-changeEmail")
+        let code = ""
+        
+        gsap.from(allCodeInps, {y: 100, opacity: 0, scale: .5, stagger: .1, duration: .1}).then(()=>{
+            allCodeInps.item(0).focus()
+            allCodeInps.forEach((item, index) => {
+                item.oninput = ()=>{
+                    let next = index + 1
+                    code += item.value
+                    if(next == allCodeInps.length){
+                        if(number == code){
+                            // createUser(userObject)
+                        }else{
+                            authMainError("Invalid code")
+                            resetCodeInputs()
+                        }
+                    }else{
+                        allCodeInps.item(next).focus()
+                    }
+                }
+            })
+        })
+
+        allinpsContainer.onclick = () => {
+            for(let i = 0; i < allCodeInps.length; i++){
+                let curr = allCodeInps.item(i)
+                if(curr.value == ""){
+                    curr.focus()
+                    break;
+                }
+            }
+        }
+
+        back_retrybutton.onclick = ()=> { 
+            resetCodeInputs()
+            this.float.floatLoad("resending email")
+            this.api.verifyEmail("emmanuelbowofoluwa", (d)=>{
+                this.float.floatEnd(()=>{
+                    code = d.message
+                })
+            })
+        }
+
+        function resetCodeInputs(){
+            allCodeInps.forEach(item => item.value = null)
+            allCodeInps.item(0).focus()
+        }
     }
 
     #openButton(valid, run = null) {
+        let button = this.domElement.querySelector("#subBtn")
+        
         if(run == null) return  this.domElement.querySelector("#subBtn").classList.add("closed")
         if (valid) {
-            this.domElement.querySelector("#subBtn").classList.remove("closed")
-            this.domElement.querySelector("#subBtn").onclick = ()=> run()
+            button.classList.remove("closed")
+            button.onclick = ()=> run()
         } else {
-            this.domElement.querySelector("#subBtn").classList.add("closed")
-            this.domElement.querySelector("#subBtn").onclick = null
+            button.classList.add("closed")
+            button.onclick = null
         }
+    }
+
+    #hideMainSubBtn(){
+        const button = this.domElement.querySelector("#subBtn")
+        
+        gsap.to(button, {y: 100, opacity: 0, scale: .5, duration: .1}).then(() => {
+            button.style.display = "none"
+        })
     }
 }

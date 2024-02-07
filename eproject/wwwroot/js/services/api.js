@@ -9,7 +9,7 @@ export default class Api{
     constructor(){this.#http = new Http(); this.#float = new Float()}
     
     getUsers(hasData, noData, onerror = null){
-        this.#http.get("getUsers")
+        this.#http.get("/User")
         .then(res => {if(res.ok && res.status == 200) return res.json()})
         .then(data => {
             if(data.message){
@@ -44,5 +44,16 @@ export default class Api{
                 onerror()
              }
         })
+    }
+
+    /**
+     * 
+     * @param {string} email
+     *  The mail that will be verified  
+     * @param {*} run 
+     *  The function that will be run after the fetch has completed
+     */
+    verifyEmail(email ,run){
+        this.#http.get(`/User/verifyMail/?email=${email}`).then(res => res.json()).then(data => run(data)).catch(err => console.log(err))
     }
 }

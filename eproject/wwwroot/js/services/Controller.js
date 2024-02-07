@@ -1,4 +1,6 @@
+import Api from "./api.js"
 import { env } from "./env.js"
+import Float from "./float.js"
 export class Controller {
     domElement = document.createElement("div")
 
@@ -9,6 +11,10 @@ export class Controller {
     componentName
 
     isInitiated = false
+
+    api = new Api()
+
+    float = new Float()
 
     /**
      * 

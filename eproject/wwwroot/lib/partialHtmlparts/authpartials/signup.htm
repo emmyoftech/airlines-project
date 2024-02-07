@@ -1,5 +1,6 @@
 
 <div class="form">
+    <p class="authMainErrMsg" style="display: none;"></p>
     <!-- AUTH STAGE 1 -->
     <div class="auth-stage one" style="display: none;">
         <div class="twoInputHold">
@@ -38,7 +39,8 @@
     </div>
     <!-- AUTH STAGE 1 end -->
 
-    <div class="auth-stage two">
+    <!-- AUTH STAGE 2 -->
+    <div class="auth-stage two" style="display: none;">
         <label>
             <div class="passCon">
                 <input type="password" id="pass" placeholder="Enter password...">
@@ -57,12 +59,35 @@
             <p class="err-msg"></p>
         </label>
     </div>
+    <!-- AUTH STAGE 2 end -->
+
+    <div class="auth-stage three">
+        <div class="code-wrapper">
+            <p class="email-msg">A 6 digit code has been sent to '<span  id="previewmail"></span>', 
+                Enter code here</p>
+    
+            <div class="code-input-box-container">
+                <input type="number" class="code-inp">
+                <input type="number" class="code-inp">
+                <input type="number" class="code-inp">
+                <input type="number" class="code-inp">
+                <input type="number" class="code-inp">
+                <input type="number" class="code-inp">
+            </div>    
+        </div>
+
+        <div class="code-btns">
+            <button id="back-retryEmail">retry</button>
+            <button id="next-changeEmail">change email</button>
+        </div>
+    </div>
+
     <button type="submit" class="closed" id="subBtn">
       <p>next</p>
       <i class="fa-solid fa-angles-right"></i>
     </button>
     <div class="signFoot">
-        <p>i already have an account?</p>
+        <p>Already have an account?</p>
         <a href="/Auth/signin">Sign in</a>
     </div>
 </div>

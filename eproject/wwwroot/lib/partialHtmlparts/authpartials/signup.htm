@@ -2,7 +2,7 @@
 <div class="form">
     <p class="authMainErrMsg" style="display: none;"></p>
     <!-- AUTH STAGE 1 -->
-    <div class="auth-stage one" style="display: none;">
+    <div class="auth-stage one">
         <div class="twoInputHold">
             <label>
                 <input type="text" placeholder="Enter Firstname..." id="firname">
@@ -61,7 +61,7 @@
     </div>
     <!-- AUTH STAGE 2 end -->
 
-    <div class="auth-stage three">
+    <div class="auth-stage three" style="display: none;">
         <div class="code-wrapper">
             <p class="email-msg">A 6 digit code has been sent to '<span  id="previewmail"></span>', 
                 Enter code here</p>
@@ -76,8 +76,15 @@
             </div>    
         </div>
 
+        <div class="newEmail" style="display: none;">
+            <p class="email-msg">Enter your new email.</p>
+            <label>
+                <input type="email" id="newEmail_id" placeholder="Enter new mail...">
+            </label>
+        </div>
+
         <div class="code-btns">
-            <button id="back-retryEmail">retry</button>
+            <button id="back-retryEmail">resend code</button>
             <button id="next-changeEmail">change email</button>
         </div>
     </div>
@@ -91,3 +98,4 @@
         <a href="/Auth/signin">Sign in</a>
     </div>
 </div>
+ 

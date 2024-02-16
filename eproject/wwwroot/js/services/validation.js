@@ -49,8 +49,10 @@ function getErrMsgContainer(inputDom){
 
 export function isPasswordValid(inputDom){
     const value = inputDom.value,
-    passRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).+$/;
-    return !isInputEmpty(inputDom) && value.length > 5 && passRegex.test(value)
+    passRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).+$/,
+    pass = !isInputEmpty(inputDom) && value.length > 5 && passRegex.test(value)
+    console.log(pass)
+    return pass
 }
 
 export function enableEyeToggle(inputDom){

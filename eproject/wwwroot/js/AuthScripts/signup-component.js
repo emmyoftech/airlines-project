@@ -5,10 +5,12 @@ import {
     inputErrloggerRemover, 
     isEmailValid, 
     isInputEmpty, 
+    isPasswordValid, 
     isPhoneNumberValid
 } from "../services/validation.js";
 import User from "../interfaces/user.js"
 import { authMainError } from "./authService.js";
+import { buttonLoad } from "../services/library.js";
 
 
 export default class signupComponent extends Controller {
@@ -17,9 +19,7 @@ export default class signupComponent extends Controller {
     }
 
     #starter() {
-        let user = new User()
-        user.setEmail("emmanuelbowofoluwa@gmail.com")
-        this.#stage3(user, 234546)
+        this.#stage1()        
     }
 
     #stage1() {
@@ -30,16 +30,23 @@ export default class signupComponent extends Controller {
             phoneNumder = this.domElement.querySelector("#phNum"),
             user = new User(),
             save_to_stage2 = ()=> {
-                user.setFirstName(firstNameDom.value)
-                user.setLastName(lastNameDom.value)
-                user.setPhoneNumber(phoneNumder.value)
-                user.setEmail(email.value)
+                user.FirstName = firstNameDom.value
+                user.LastName = lastNameDom.value
+                user.PhoneNumber = phoneNumder.value
+                user.Email = email.value
                 
-                this.#stage2(user)
+                gsap.to(this.domElement.querySelector(".one"), {
+                    x: -100,
+                    opacity: 0,
+                    duration: .3
+                })
+                .then(()=> {
+                    this.domElement.querySelector(".one").style.display = "none"
+                    this.#stage2(user)
+                })
             }
 
-
-        this.domElement.querySelectorAll("input").forEach(item => {
+        this.domElement.querySelector(".one").querySelectorAll("input").forEach(item => {
             item.oninput = () => {
                 if (item.id == "firname" || item.id == "lasname") {
                     if (!isInputEmpty(item)) {
@@ -74,7 +81,7 @@ export default class signupComponent extends Controller {
             let rep = item.closest("label").querySelector("span")
             item.onchange = () => {
                 rep.classList.add("active")
-                user.setGender(item.value)
+                user.Gender = item.value
                 this.domElement.querySelectorAll("input[type='radio']").forEach(item => {
                     let rep = item.closest("label").querySelector("span")
                     if (item.checked) {
@@ -88,7 +95,7 @@ export default class signupComponent extends Controller {
             if (item.id == "malePick") {
                 rep.classList.add("active")
                 item.checked = true
-                user.setGender(item.value)
+                user.Gender = item.value
             }
         })
     }
@@ -99,21 +106,34 @@ export default class signupComponent extends Controller {
      *  Takes a user object as parameter
      */
     #stage2(userObject){
+        this.domElement.querySelector(".signFoot").style.display = "none"
         this.#openButton(false)
-        const passWord = this.domElement.querySelector("#pass"),
-        conpass = this.domElement.querySelector("#conpass"),
+        
+        const 
+        passCon = this.domElement.querySelector(".two"),
+        passWord = passCon.querySelector("#pass"),
+        conpass = passCon.querySelector("#conpass"),
         hasSymbolReg = /^(?=.*[^A-Za-z0-9]).+$/,
         hasCapitalLetterReg = /.*[A-Z].*/,
         hasNumberReg = /^(?=.*[0-9]).+$/,
         save_to_stage3 = ()=>{
-            userObject.setPassword(passWord.value)
-            this.#stage3(userObject)
+            userObject.Password = passWord.value
+            let btLoad = buttonLoad(this.domElement.querySelector("#subBtn"), "verifying email")
+            this.api.verifyEmail(userObject.Email, (d)=>{
+                btLoad.stopButtonLoad()
+                gsap.to(passCon, {x: -100, opacity: 0, duration: .3}).then(()=>{
+                    passCon.style.display = "none"
+                    this.#stage3(userObject, parseInt(d))
+                })  
+            })
         }
+        passCon.style.display = "flex"
+        gsap.from(passCon, {x: 100, opacity: 0, duration: .3})
         passWord.oninput = (e)=>{
             const value = e.target.value,
             passPoints = this.domElement.querySelectorAll(".pass-point")
 
-            this.#openButton(isPhoneNumberValid(e.target) && e.target.value == conpass.value, ()=> save_to_stage3())
+            this.#openButton(isPasswordValid(e.target) && e.target.value == conpass.value, ()=> save_to_stage3())
 
             if(value.length > 5){
                 passPoints.item(0).classList.add("active")
@@ -141,28 +161,35 @@ export default class signupComponent extends Controller {
         }
 
         conpass.oninput = (e)=>{
-            this.#openButton(isPhoneNumberValid(passWord) && e.target.value == passWord.value, ()=> save_to_stage3())
+            this.#openButton(isPasswordValid(passWord) && e.target.value == passWord.value, ()=> save_to_stage3())
             if(passWord.value != e.target.value){
                 inputErrLogger(e.target, "invalid password", true)
             }else{
                 inputErrloggerRemover(e.target)
             }
         }
-
         
         enableEyeToggle(passWord)
         enableEyeToggle(conpass)
     }
 
-    #stage3(userObject, number){
+    #stage3(userObject, otp){
         this.#hideMainSubBtn()
-        this.domElement.querySelector("#previewmail").textContent = userObject.getEmail()
+        this.domElement.querySelector("#previewmail").textContent = userObject.Email
         const 
+        verCon = this.domElement.querySelector(".three"),
         allinpsContainer = this.domElement.querySelector(".code-wrapper"),
         allCodeInps = this.domElement.querySelectorAll(".code-inp"),
         back_retrybutton = this.domElement.querySelector("#back-retryEmail"),
-        change_nextButton = this.domElement.querySelector("#next-changeEmail")
+        change_nextButton = this.domElement.querySelector("#next-changeEmail"),
+        code_btnsContainer = this.domElement.querySelector(".code-btns"),
+        codeWrapContainer = this.domElement.querySelector(".code-wrapper"),
+        newMailContainer = this.domElement.querySelector(".newEmail")
         let code = ""
+
+        verCon.style.display = "flex"
+        codeWrapContainer.style.display = "flex"
+        newMailContainer.style.display = "none"
         
         gsap.from(allCodeInps, {y: 100, opacity: 0, scale: .5, stagger: .1, duration: .1}).then(()=>{
             allCodeInps.item(0).focus()
@@ -171,8 +198,8 @@ export default class signupComponent extends Controller {
                     let next = index + 1
                     code += item.value
                     if(next == allCodeInps.length){
-                        if(number == code){
-                            // createUser(userObject)
+                        if(otp == parseInt(code)){
+                            this.#createUser(userObject)
                         }else{
                             authMainError("Invalid code")
                             resetCodeInputs()
@@ -183,6 +210,9 @@ export default class signupComponent extends Controller {
                 }
             })
         })
+        code_btnsContainer.style.display = "flex"
+        gsap.set(code_btnsContainer, {y:0, opacity: 1})
+        gsap.from(code_btnsContainer, {y: 100, opacity: 0, duration: .2})
 
         allinpsContainer.onclick = () => {
             for(let i = 0; i < allCodeInps.length; i++){
@@ -197,11 +227,47 @@ export default class signupComponent extends Controller {
         back_retrybutton.onclick = ()=> { 
             resetCodeInputs()
             this.float.floatLoad("resending email")
-            this.api.verifyEmail("emmanuelbowofoluwa", (d)=>{
+            this.api.verifyEmail(userObject.Email, (d)=>{
                 this.float.floatEnd(()=>{
-                    code = d.message
+                    otp = d
                 })
             })
+        }
+
+        change_nextButton.onclick = ()=> {
+            this.#openButton(null)
+            const code_btnsContainer = this.domElement.querySelector(".code-btns")
+
+            gsap.set(newMailContainer, {x: 0, opacity: 1})
+            gsap.from(newMailContainer, {x: 100, opacity: 0, duration: .5})
+
+            codeWrapContainer.style.display = "none"
+            newMailContainer.style.display = "flex"
+            
+
+            gsap.to(code_btnsContainer, {y:100, opacity: 0, duration: .1}).then(()=>{
+                this.#showMainSubBtn()
+                code_btnsContainer.style.display = "none"
+                let mailinp = newMailContainer.querySelector("#newEmail_id")
+                mailinp.value = userObject.Email
+                mailinp.oninput = ()=> {
+                    this.#openButton(isEmailValid(mailinp), ()=>{
+                        let btnLoad = buttonLoad(this.domElement.querySelector("#subBtn"), "verifying mail..")
+                        if(!isEmailValid(mailinp.value)) return authMainError("Please Enter a valid email")
+                        this.api.verifyEmail(mailinp.value, (d) =>{
+                            userObject.Email = mailinp.value
+                            btnLoad.stopButtonLoad(()=> {
+                                gsap.to(newMailContainer, {x: 100, opacity: 0, duration: .5})
+                                .then(()=> {
+                                    codeWrapContainer.style.display = "flex"
+                                    newMailContainer.style.display = "none"
+                                    this.#stage3(userObject, parseInt(d.message))
+                                })
+                            })
+                        })
+                    })
+                }
+            })   
         }
 
         function resetCodeInputs(){
@@ -212,7 +278,6 @@ export default class signupComponent extends Controller {
 
     #openButton(valid, run = null) {
         let button = this.domElement.querySelector("#subBtn")
-        
         if(run == null) return  this.domElement.querySelector("#subBtn").classList.add("closed")
         if (valid) {
             button.classList.remove("closed")
@@ -223,11 +288,56 @@ export default class signupComponent extends Controller {
         }
     }
 
+    /**
+     * 
+     * @param {User} userObject 
+     */
+    #createUser(userObject){
+        const
+        today = new Date(),
+        year = today.getFullYear(),
+        month = today.getMonth() + 1,
+        day = today.getDate()
+
+        userObject.EmailConfirmed = true
+        userObject.LogStatus = "loggedout"
+        userObject.Role = "user"
+        userObject.RegisteredOn = day + "-" + month + "-" + year
+
+        this.float.floatLoad(`registering ${userObject.FirstName} ${userObject.LastName}`)
+        this.api.createUser(userObject, (d) => {
+            this.float.floatEnd(() => {
+                if(d.includes("fail")){
+                    this.float.dialog(
+                        this.float.DIALOG_ERROR,
+                        "Oops seems we are having issues registering you, pls try again later"
+                        )
+                }else{
+                    this.float.dialog(this.float.DIALOG_SUCCESS,"account creation was successfull", null, ()=> {
+                        appStore.setEmail(userObject.Email)
+                        this.float.floatLoad("redirecting to login")
+                        setTimeout(() => {
+                            this.float.floatEnd(() => location.href = "/Auth/signin")
+                        }, 3000);
+                    })
+                }
+            })
+        })
+    }
+
     #hideMainSubBtn(){
         const button = this.domElement.querySelector("#subBtn")
         
         gsap.to(button, {y: 100, opacity: 0, scale: .5, duration: .1}).then(() => {
             button.style.display = "none"
+        })
+    }
+
+    #showMainSubBtn(){
+        const button = this.domElement.querySelector("#subBtn")
+        gsap.set(button, {y:0, opacity: 1, scale: 1})
+        gsap.from(button, {y: 100, opacity: 0, scale: .5, duration: .1}).then(() => {
+            button.style.display = "flex"
         })
     }
 }

@@ -5,7 +5,8 @@ export default class Storage {
     constructor(){
         if(this.#store == null){
             localStorage.setItem("ARS", JSON.stringify({
-                user: null
+                userId: null,
+                userEmail: null
             }))
         }else{
             this.#parsedData = JSON.parse(this.#store)
@@ -21,21 +22,39 @@ export default class Storage {
      *  This returns the users id or null if it is'nt available 
      * @returns {string | null}
      */
-    getUser(){
-        if(this.#parsedData == null) return null
-        let storedData = this.#parsedData
-        return storedData.user
+    getUserId(){
+        return this.#parsedData.userId ?? null
+    }
+
+        /**
+     *  This returns the users email or null if it is'nt available 
+     * @returns {string | null}
+     */
+    getUserEmail(){
+        return this.#parsedData.userEmail ?? null
     }
 
      /**
-     *  This sets the users id
+     *  This sets the users id in local storage
      * 
      * @param {string} userId 
      * 
      * @returns {void}
      */
-    setUser(userId){
-        this.#parsedData.user = userId
+    setUserId(userId){
+        this.#parsedData.userId = userId
+        this.#set(this.#parsedData)
+    }
+
+     /**
+     *  This sets the users email in local storage
+     * 
+     * @param {string} userEmail 
+     * 
+     * @returns {void}
+     */
+    setUserEmail(userEmail){
+        this.#parsedData.userEmail = userEmail
         this.#set(this.#parsedData)
     }
 }

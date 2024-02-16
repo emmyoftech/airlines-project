@@ -8,5 +8,11 @@ namespace eproject.Controllers
         {
             return View("signup");
         }
+
+        public IActionResult Signin() 
+        {
+            return View("signin");
+        }
     }
+
 }

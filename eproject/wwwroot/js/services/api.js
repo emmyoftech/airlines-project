@@ -1,23 +1,23 @@
-import Float from "./float.js";
 import Http from "./http.js";
 import User from "../interfaces/user.js"
 
 export default class Api{
 
     #http
-    #float
-    constructor(){this.#http = new Http(); this.#float = new Float()}
+    constructor(){this.#http = new Http();}
     
-    getUsers(hasData, noData, onerror = null){
-        this.#http.get("/User")
-        .then(res => {if(res.ok && res.status == 200) return res.json()})
-        .then(data => {
-            if(data.message){
-                noData(data)
+    createUser(user, cb){
+        this.#http.post("/User", JSON.stringify(user), (d) => cb(d))
+    }
+
+    getUsers(hasData, noData){
+        this.#http.get("/User?all=true", (d) => {
+            if(typeof d == "string"){
+                noData(d)
             }else{
                 let userModelArray = new Array();
 
-                for(const row of data){
+                for(const row of d){
                     userModelArray.push(
                         new User(
                             row.id, 
@@ -33,16 +33,8 @@ export default class Api{
                             row.gender
                         ))
                 }
-
                 hasData(userModelArray)
             }
-        })
-        .catch(() => {
-             if(onerror == null){
-                this.#float.dialog(this.#float.DIALOG_ERROR, "an error occured in the server", "system crashed")
-             }else{
-                onerror()
-             }
         })
     }
 
@@ -50,10 +42,10 @@ export default class Api{
      * 
      * @param {string} email
      *  The mail that will be verified  
-     * @param {*} run 
+     * @param {Function} run 
      *  The function that will be run after the fetch has completed
      */
     verifyEmail(email ,run){
-        this.#http.get(`/User/verifyMail/?email=${email}`).then(res => res.json()).then(data => run(data)).catch(err => console.log(err))
+        this.#http.get(`/User/verifyMail/?email=${email}`, (d)=> run(d))
     }
 }

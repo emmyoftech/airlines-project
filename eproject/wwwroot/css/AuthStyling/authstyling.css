@@ -1,7 +1,12 @@
 @import "../float.css";
+main:has(.signin-component){
+    grid-template-areas: "navbar" "signin" "footer";
+}
+main:has(.signup-component){
+    grid-template-areas: "navbar" "signup" "footer";
+}
 main{
     display: grid;  
-    grid-template-areas: "navbar" "signup" "footer";
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 10fr .5fr;
     width: 100%;
@@ -13,11 +18,12 @@ main{
     max-width: 500px;
     min-width: 320px;
     height: max-content;
+    min-height: 100px;
     display: flex;
     flex-flow: column;
     gap: var(--medNum);
     padding: var(--smallNum);
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .auth-stage{
     width: 100%;
@@ -74,6 +80,7 @@ label p::first-letter{
     cursor: pointer;
     gap: var(--smallNum);
 }
+.form button p{pointer-events: none;}
 .form button.closed{
     opacity: .5;
     pointer-events: none;

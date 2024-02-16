@@ -158,7 +158,9 @@ export default class Float{
                 gsap.from(textHolder, {y: 50, opacity: 0, duration: .1}).then(() => textHolder.textContent = newLoadString)
             }
         })
-        return retFunc
+        return {
+            changeText: (text) => retFunc(text)
+        }
     }
 
     /**

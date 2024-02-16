@@ -44,6 +44,8 @@ export function buttonLoad(button, loadText=null){
     formerIclass = i==null ? null : i.className,
     formerBtntext = p.textContent
 
+    button.classList.add("closed")
+
 
     if(i == null){
         let newIElement = document.createElement("i")
@@ -52,6 +54,7 @@ export function buttonLoad(button, loadText=null){
         button.append(newIElement)
 
         p.textContent = loadText == null ? "loading...": loadText
+        i = button.querySelector("i")
     }else{
         p.textContent = "loading..."
         i.className = "fa-solid fa-spinner"
@@ -70,6 +73,7 @@ export function buttonLoad(button, loadText=null){
         button.style.pointerEvents = "all"
         p.textContent = formerBtntext
         timeline.kill()
+        button.classList.remove("closed")
         if(run) run()
     }}
 }

@@ -1,0 +1,21 @@
+.signin-component{
+    display: grid;
+    place-items: center;
+}
+.form .passCon{
+    padding: 0;
+    padding-right: var(--medNum);
+}
+.foottext{
+    display:  flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--baseFont);
+    font-size: calc(var(--medNum) - 1px);
+}
+.foottext a{
+    font-size: var(--medNum);
+}
+.fp{
+    cursor: pointer;
+}

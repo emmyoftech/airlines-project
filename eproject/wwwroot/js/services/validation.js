@@ -1,3 +1,8 @@
+
+export const hasSymbolReg = /^(?=.*[^A-Za-z0-9]).+$/
+export const hasCapitalLetterReg = /.*[A-Z].*/
+export const hasNumberReg = /^(?=.*[0-9]).+$/
+
 /**
  * 
  * @param {HTMLInputElement} inputDom 
@@ -51,12 +56,16 @@ export function isPasswordValid(inputDom){
     const value = inputDom.value,
     passRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).+$/,
     pass = !isInputEmpty(inputDom) && value.length > 5 && passRegex.test(value)
-    console.log(pass)
     return pass
 }
 
 export function enableEyeToggle(inputDom){
-    let eye = inputDom.parentElement.querySelector("i")
+    let eye = document.createElement("i")
+    
+    eye.className = "fa-regular fa-eye"
+
+    eye.style.cursor = "pointer"
+
     eye.onclick = ()=>{
         if(inputDom.type == "text"){
             inputDom.type = "password"
@@ -66,4 +75,6 @@ export function enableEyeToggle(inputDom){
             eye.classList.replace("fa-eye", "fa-eye-slash")   
         }
     }
+
+    inputDom.insertAdjacentElement("afterend", eye)
 }

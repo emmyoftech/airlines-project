@@ -1,17 +1,19 @@
 import { env } from "../services/env.js";
 import { Controller } from "../services/Controller.js";
-import Float from "../services/float.js";
+import User from "../interfaces/user.js";
 
 
 export default class SidebarComponent extends Controller{
-    #float = new Float()
-    constructor(parentElement) {
+    #userObj = new User()
+
+    constructor(parentElement, user) {
         super(parentElement, "panel=sidebar", () => this.#starter())
+        this.#userObj = user
     }
 
     #starter() {
-        this.#setLinks("admin", this)
-        this.domElement.querySelector(".logoutTab").onclick = () => this.#float.askQuestion("");
+        this.#setLinks(this.#userObj.Role, this)
+        this.domElement.querySelector(".logoutTab").onclick = () => this.float.askQuestion("Are you sure you want to logout");
     }
 
     /**

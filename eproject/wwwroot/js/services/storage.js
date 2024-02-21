@@ -1,15 +1,31 @@
+import { ObjKeysToStringArray } from "./library.js";
+
 export default class Storage {
     #store = localStorage.getItem("ARS")
     #parsedData = null;
+    #storeObj = {
+        userId: null,
+        userEmail: null,
+        userRole: null
+    }
 
     constructor(){
         if(this.#store == null){
-            localStorage.setItem("ARS", JSON.stringify({
-                userId: null,
-                userEmail: null
-            }))
-        }else{
-            this.#parsedData = JSON.parse(this.#store)
+            localStorage.setItem("ARS", JSON.stringify(this.#storeObj))
+        }
+        this.#parsedData = JSON.parse(this.#store)
+        this.#updateStorage()
+    }
+
+    #updateStorage(){
+        const storedKeys = ObjKeysToStringArray(this.#parsedData),
+        storeClassKeys = ObjKeysToStringArray(this.#storeObj)
+
+        for(const ClassKeys of storeClassKeys){
+            if(storedKeys.findIndex(item => item == ClassKeys) == -1){
+                this.#parsedData[ClassKeys] = null
+                this.#set(this.#parsedData)
+            }
         }
     }
 

@@ -1,0 +1,44 @@
+<div class="emailView">
+    <label>
+        <input type="email" placeholder="Enter Email...">
+        <div class="err-msg"></div>
+    </label>
+
+    <button type="submit"><p>Next</p></button>
+</div>
+
+<div class="codeHolder" style="display: none;">
+    <p>A code as been sent to <span id="emailHold"></span>, Enter the recieved code here.</p>
+    <div class="codePanel">
+        <input type="number" class="codeHold">
+        <input type="number" class="codeHold">
+        <input type="number" class="codeHold">
+        <input type="number" class="codeHold">
+        <input type="number" class="codeHold">
+        <input type="number" class="codeHold">
+    </div>
+
+    <button id="resend">resend</button>
+</div>
+
+<div class="changePassword" style="display: none;">
+    <label>
+        <div class="passCon">
+            <input type="password" id="pwd" placeholder="Enter new password...">
+            
+        </div>
+        <p class="pass-point">Must be at least more than 5 characters</p>
+        <p class="pass-point">Must have a symbol</p>
+        <p class="pass-point">Must have a number</p>
+        <p class="pass-point">Must have captial letters</p>
+    </label>
+
+    <label>
+        <div class="passCon">
+            <input type="password" id="conpwd" placeholder="Confirm password...">
+        </div>
+        <div class="err-msg"></div>
+    </label>
+
+    <button type="submit"><p>submit</p></button>
+</div>

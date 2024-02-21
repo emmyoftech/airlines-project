@@ -64,7 +64,7 @@ label p{
 label p::first-letter{
     text-transform: capitalize;
 }
-.form button{
+button{
     height: 30px;
     border: none;
     outline: none;
@@ -132,6 +132,9 @@ label p::first-letter{
     color: green;
 }
 .authMainErrMsg{
+    width: 100%;
+    height: max-content;
+    display: flex;
     text-align: center;
     justify-content: center;
     font-family: var(--secondFont);
@@ -140,4 +143,14 @@ label p::first-letter{
     padding: var(--smallNum);
     border-radius: var(--smallNum);
     font-size: var(--medNum);
+    margin-bottom: var(--medNum);
+}
+.err-msg{
+    color: var(--err-red);
+    display: block;
+    font-family: var(--secondFont);
+    font-size: var(--medNum);
+}
+.err-msg::first-letter{
+    text-transform: capitalize;
 }

@@ -36,7 +36,12 @@
 .dialog-title, .ques-title{
     text-transform: capitalize;
 }
-.dialog-text::first-letter, .ques-text::first-letter{
+.dialog-text, .load-text{
+    font-family: var(--baseFont);
+    text-align: center;
+    padding: 0 var(--medNum);
+}
+.dialog-text::first-letter, .ques-text::first-letter, .load-text::first-letter{
     text-transform: capitalize;
 }
 .dialog-btn{

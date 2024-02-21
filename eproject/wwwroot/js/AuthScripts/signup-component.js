@@ -6,7 +6,10 @@ import {
     isEmailValid, 
     isInputEmpty, 
     isPasswordValid, 
-    isPhoneNumberValid
+    isPhoneNumberValid,
+    hasCapitalLetterReg,
+    hasNumberReg,
+    hasSymbolReg
 } from "../services/validation.js";
 import User from "../interfaces/user.js"
 import { authMainError } from "./authService.js";
@@ -113,9 +116,6 @@ export default class signupComponent extends Controller {
         passCon = this.domElement.querySelector(".two"),
         passWord = passCon.querySelector("#pass"),
         conpass = passCon.querySelector("#conpass"),
-        hasSymbolReg = /^(?=.*[^A-Za-z0-9]).+$/,
-        hasCapitalLetterReg = /.*[A-Z].*/,
-        hasNumberReg = /^(?=.*[0-9]).+$/,
         save_to_stage3 = ()=>{
             userObject.Password = passWord.value
             let btLoad = buttonLoad(this.domElement.querySelector("#subBtn"), "verifying email")

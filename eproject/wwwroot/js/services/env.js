@@ -3,15 +3,19 @@ let env = {
 
     panelPartials: "/lib/partialHtmlparts/panelpartials/",
 
-    authPartials: "/lib/partialHtmlparts/authpartials",
+    authPartials: "/lib/partialHtmlparts/authpartials/",
 
-    sharredPartials: "/lib/partialHtmlparts/sharedpartials",
+    sharedPartials: "/lib/partialHtmlparts/sharedpartials/",
+
+    floatPartials: "/lib/partialHtmlparts/floatpartials/",
     
     panelPartialsStyles: "/css/PanelStyling/",
     
     authPartialsStyles: "/css/AuthStyling/",
     
     sharedPartialsStyles: "/css/sharedStyling/",
+
+    floatPartialsStyles: "/css/FloatStyling/",
     
     links: {
         panel: '/Panel',
@@ -27,9 +31,23 @@ let env = {
             }
         },
         {
+            link: "airports",
+            icon: {
+                class: "fa-city",
+                type: "solid"
+            }
+        },
+        {
             link: "planes",
             icon: {
                 class: "fa-plane",
+                type: "solid"
+            }
+        },
+        {
+            link: "flights",
+            icon: {
+                class: "fa-plane-departure",
                 type: "solid"
             }
         }
@@ -38,7 +56,7 @@ let env = {
         {
             link: "dashboard",
             icon: {
-                class: "dashboard",
+                class: "fa-table-cells-large",
                 type: "solid"
             }
         }

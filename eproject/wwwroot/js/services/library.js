@@ -77,3 +77,18 @@ export function buttonLoad(button, loadText=null){
         if(run) run()
     }}
 }
+
+/**
+ * This takes an object and returns a string array of the keys in the object
+ * @param {Object} obj 
+ * @returns {string[]}
+ */
+export function ObjKeysToStringArray (obj){
+    const a = Array()
+
+    for(const key in obj){
+        a.push(key)
+    }
+
+    return a
+}

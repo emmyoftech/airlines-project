@@ -1,6 +1,7 @@
 .signin-component{
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .form .passCon{
     padding: 0;

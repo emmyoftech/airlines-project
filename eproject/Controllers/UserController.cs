@@ -2,9 +2,7 @@
 using eproject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.IO;
 using System.Net.Mail;
-using System.IdentityModel.Tokens.Jwt;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -57,10 +55,51 @@ namespace eproject.Controllers
                 return res;
         }
 
+        [HttpPut]
+        public IActionResult ChangePwd(string email)
+        {
+            var res = new ContentResult { ContentType = "text/plain", StatusCode = 200 };
+
+            User? user = _db.Users.FirstOrDefault<User>(m => m.Email == email);
+
+            if(user != null)
+            {
+                using(var reader = new StreamReader(Request.Body, Encoding.UTF8))
+                {
+                    string json = Task<string>.Run(() => reader.ReadToEndAsync()).Result;
+
+
+                    var passObj = JsonConvert.DeserializeObject <User>(json);
+
+                    if (passObj != null)
+                    {
+                        string pass = passObj.Password;
+                        user.Password = pass;
+                        _db.SaveChanges();
+                        res.Content = "success";
+                    }
+                    else
+                    {
+                        res.Content = "nothing was passed to the server";
+                    }
+
+                }
+            }
+            else
+            {
+                res.Content = $"User with {email} cannot be found";
+            }
+
+            return res;
+        }
+
         [HttpGet]
         public IActionResult VerifyMail(string email)
         {
             Random random = new Random();
+
+            var res = new ContentResult {ContentType = "text/plain", StatusCode = 200 };
+
             string OTP = "";
 
             for(int i = 0; i < 6; i++)
@@ -68,22 +107,31 @@ namespace eproject.Controllers
                 OTP += random.Next(1, 9);
             }
 
-            var mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("OTP <emmanuelcod90@gmail.com>");
-            mailMessage.To.Add(email);
-            mailMessage.Subject = "Email verification OTP";
-            mailMessage.Body = "Your one time p[assword is: " + OTP;
+            try
+            {
+                var mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("OTP <emmanuelcod90@gmail.com>");
+                mailMessage.To.Add(email);
+                mailMessage.Subject = "Email verification OTP";
+                mailMessage.Body = "Your one time password is: " + OTP;
 
-            var smtpClient = new SmtpClient("smtp.gmail.com");
-            smtpClient.Port = 587;
-            smtpClient.Credentials = new NetworkCredential("emmanuelcod90@gmail.com", "vvbjlphbmkovgqjl");
-            smtpClient.EnableSsl = true;
+                var smtpClient = new SmtpClient("smtp.gmail.com");
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new NetworkCredential("cecilia.corridor@gmail.com", "cdoodjdwnlzfazjf");
+                smtpClient.EnableSsl = true;
 
-            smtpClient.Send(mailMessage);
+                smtpClient.Send(mailMessage);
 
+                res.Content = OTP;
 
-            return new ContentResult { Content= OTP, ContentType= "text/plain", StatusCode= 200 };
+            }
+            catch (Exception e)
+            {
+                res.Content = e.Message;
+                res.StatusCode = 500;
+            }
+
+            return res;
         }
-
     }
 }

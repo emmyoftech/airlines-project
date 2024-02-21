@@ -38,6 +38,10 @@ export default class Api{
         })
     }
 
+    changePassword(email, obj, cb){
+        this.#http.put(`/User/ChangePwd?email=${email}`, obj, (d) => cb(d))
+    }
+
     /**
      * 
      * @param {string} email
@@ -45,7 +49,7 @@ export default class Api{
      * @param {Function} run 
      *  The function that will be run after the fetch has completed
      */
-    verifyEmail(email ,run){
+    verifyEmail(email, run){
         this.#http.get(`/User/verifyMail/?email=${email}`, (d)=> run(d))
     }
 }

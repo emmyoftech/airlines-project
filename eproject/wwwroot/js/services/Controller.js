@@ -1,6 +1,7 @@
 import Api from "./api.js"
 import { env } from "./env.js"
 import Float from "./float.js"
+import Storage  from "./storage.js"
 export class Controller {
     domElement = document.createElement("div")
 
@@ -15,6 +16,8 @@ export class Controller {
     api = new Api()
 
     float = new Float()
+
+    storage = new Storage()
 
     /**
      * 
@@ -42,17 +45,22 @@ export class Controller {
      *  for where the .htm file is located
      */
     #formishCompHtmFilePath(name){
-        let reName = ""
-        if(name.includes("=")){
-            let nameSplit = name.split("="),
+        let nameSplit = name.split("="),
             htmlPartialName = nameSplit[1],
-            folder = nameSplit[0]
+            folder = nameSplit[0],
+            path = ""
 
-            reName = `${folder == "auth" ? env.authPartials : env.panelPartials}/${htmlPartialName}.htm`
-        }else{
-            reName = `/lib/partialHtmlparts/sharedpartials/${name}.htm`
+        switch(folder){
+            case "auth":  path = env.authPartials
+                break
+            case "panel": path = env.panelPartials
+                break
+            case "float": path = env.floatPartials
+                break
+            default: path = env.sharredPartials
         }
-        return reName
+
+        return path + htmlPartialName + ".htm"
     }
 
     /**
@@ -63,17 +71,22 @@ export class Controller {
      *  This takes the name of the component and turns it into the correct css path
      */
     #setStylingPath(name){
-        let path = ""
-        if(name.includes("=")){
-            const splitName = name.split("="),
-            folder = splitName[0],
-            stylename = splitName[1]
+        let nameSplit = name.split("="),
+            htmlPartialName = nameSplit[1],
+            folder = nameSplit[0],
+            path = ""
 
-            path = `${folder == "auth" ? env.authPartialsStyles : env.panelPartialsStyles }${stylename}.css`
-        }else{
-            path = env.sharedPartialsStyles.concat(name) + ".css"
+        switch(folder){
+            case "auth":  path = env.authPartialsStyles
+                break
+            case "panel": path = env.panelPartialsStyles
+                break
+            case "float": path = env.floatPartialsStyles
+                break
+            default: path = env.sharedPartialsStyles
         }
-        return path
+
+        return path + htmlPartialName + ".css"
     }
 
     #setStyle(csspath){
@@ -104,4 +117,11 @@ export class Controller {
     getController = () => this 
 
     setController = (controller) => this.acquiredController = controller
+
+    _destroy(whendestroyed){
+        gsap.to(this.domElement, {scale: .1, opacity: 0, duration: .3}).then(() => {
+            this.domElement.remove()
+            whendestroyed ? whendestroyed() : null
+        })
+    }
 }

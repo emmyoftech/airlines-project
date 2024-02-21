@@ -1,15 +1,23 @@
-﻿import { Controller } from "../services/Controller.js"
+﻿import Profile from "../Floats/profile.js"
+import User from "../interfaces/user.js"
+import { Controller } from "../services/Controller.js"
 import { animateAndDo } from "../services/library.js"
 
 
 export default class TopbarComponent extends Controller {
 
-    constructor(parentElement) {
-        super(parentElement , "panel=topbar", () => this.#starter())
+    /**
+     * 
+     * @param {HTMLElement} parentElement 
+     * @param {User} user 
+     */
+    constructor(parentElement, user) {
+        super(parentElement , "panel=topbar", () => this.#starter(user))
     }
 
-    #starter() {
-
+    #starter(user) {
+        new Profile(user)
+        this.domElement.querySelector(".prImg").onclick = () => new Profile()
     }
 
     navigateTo(location) {  

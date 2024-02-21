@@ -23,18 +23,20 @@ export default class Float{
     }
 
     #floatStart(domString){
-        if (!this.#IS_FLOAT_ACTIVE()) {
-            this.#mainFloatDom.className = "float"
-            this.#mainFloatDom.innerHTML = domString
-            document.body.append(this.#mainFloatDom)
-            gsap.from(this.#mainFloatDom.children[0], {y: 100, opacity: 0, duration: .2})
-            return this.#mainFloatDom;
-        } else {
-            alert("Float is still active")
-        }
-        return null
+        this.#mainFloatDom = document.createElement("section")
+        this.#mainFloatDom.className = "float"
+        this.#mainFloatDom.innerHTML = domString
+        document.body.append(this.#mainFloatDom)
+        gsap.from(this.#mainFloatDom.children[0], {y: 100, opacity: 0, duration: .2})
+
+        return this.#mainFloatDom;
     }
 
+    /**
+     * 
+     * @param {string} domString 
+     * @param {Function} dom 
+     */
     dynamicFloat(domString, dom){
         dom(this.#floatStart(domString));
     }
@@ -79,11 +81,21 @@ export default class Float{
             </div>
         `
 
-        this.dynamicFloat(inner, (dom) => {
-            dom.querySelector("button").onclick = () => {
-                this.floatEnd(action)
-            }
-        })
+        if(this.#IS_FLOAT_ACTIVE()){
+            this.floatEnd(() => {
+                this.dynamicFloat(inner, (dom) => {
+                    dom.querySelector("button").onclick = () => {
+                        this.floatEnd(action)
+                    }
+                })
+            })
+        }else{
+            this.dynamicFloat(inner, (dom) => {
+                dom.querySelector("button").onclick = () => {
+                    this.floatEnd(action)
+                }
+            })
+        }
     }
 
     /**

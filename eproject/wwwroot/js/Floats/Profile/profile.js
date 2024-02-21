@@ -1,17 +1,24 @@
-import User from "../interfaces/user.js";
-import FloatController from "../services/FLoatController.js";
-import {Controller} from "../services/Controller.js"
+import User from "../../interfaces/user.js";
+import FloatController from "../../services/FLoatController.js";
+import ProfileOverview from "./profile-overview.js";
 
 
 export default class Profile extends FloatController{
 
     #currViewConponent
+
+    #user 
+
+    #domElement
     /**
      * 
      * @param {User} user 
      */
     constructor(user){
         super("profile", (dom) => {
+            this.#domElement = dom
+            this.#user = user
+
             this.#setProflinks(dom)
         })
     }
@@ -49,19 +56,10 @@ export default class Profile extends FloatController{
          * @param {Profile} controller 
          */
         function viewChange (controller){
-            const viewDom = 
+            const viewDom = controller.#domElement.querySelector(".profView")
             if(view == "overview"){
-                controller.#currViewConponent
+                controller.#currViewConponent = new ProfileOverview(viewDom, controller.#user)
             }
         }
-    }
-}
-
-
-class ProfileOverview extends Controller{
-    constructor(parentDom){
-        super(parentDom, "float=profile-overview", () => {
-
-        })
     }
 }

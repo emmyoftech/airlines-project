@@ -1,0 +1,83 @@
+.profile-overview-component{
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+}
+.profile-img-title-overview{
+    flex: 2;
+    display: flex;
+    flex-flow: column;
+    align-items: center;    
+    justify-content: center;
+}
+.profileimgholder{
+    position: relative;
+    border: solid var(--quadtiaryPallete) 2px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    padding: var(--smallNum);
+    transition: .4s;
+}
+.profileimgholder *{
+    transition: .3s;
+}
+
+.loadHold{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.3);
+    font-size: var(--largeNum);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+}
+.loadHold i{
+    animation: spin 1s ease infinite;
+}
+.profileimgholder.loading .loadHold{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.profileimgholder img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profileimgholder.loading img{
+    opacity: .2;
+}
+
+.imgchange{
+    position: absolute;
+    background-color: var(--quadtiaryPallete);
+    color: var(--primaryPallete);
+    width: 25px;
+    height: 25px;
+    font-size: var(--medNum);
+    bottom: 0;
+    right: 20px;
+    border-radius: inherit;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.userName{
+    text-transform: capitalize;
+}
+.profmail{
+    display: flex;
+    align-items: center;
+    gap: var(--smallNum);
+}
+
+.subProfileInfo{
+    flex: 1;
+    border: var(--line);
+}

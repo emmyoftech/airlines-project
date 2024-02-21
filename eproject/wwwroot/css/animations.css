@@ -38,3 +38,13 @@
         transform: rotate(360deg);
     }
 }
+
+@keyframes spin-absolute {
+    0%, 100%{
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+
+    50%{
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}

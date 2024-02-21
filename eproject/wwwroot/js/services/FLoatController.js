@@ -27,7 +27,7 @@ export default class FloatController extends Float{
                 domElement.style.maxWidth = "1000px"
                 starter(domElement)
             })
-        })//
+        })
 
     }
 

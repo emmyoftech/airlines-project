@@ -1,4 +1,4 @@
-﻿import Profile from "../Floats/profile.js"
+﻿import Profile from "../Floats/Profile/profile.js"
 import User from "../interfaces/user.js"
 import { Controller } from "../services/Controller.js"
 import { animateAndDo } from "../services/library.js"

@@ -2,11 +2,12 @@
  * 
  * @param {HTMLElement} parentDom 
  * @param {string} msg 
+ * @param {boolean} [notError=false] 
  */
-export function authMainError(parentDom, msg){
+export function authMainError(parentDom, msg, notError=false){
     if(document.querySelector(".authMainErrMsg")) return
     const mainErrorDom = document.createElement("p")
-    mainErrorDom.className = "authMainErrMsg"
+    mainErrorDom.className = `authMainErrMsg ${notError ? "succ" : null}`
     mainErrorDom.textContent = msg
     parentDom.insertAdjacentElement("afterbegin", mainErrorDom)
 

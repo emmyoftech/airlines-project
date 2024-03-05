@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\AuthScripts\" />
-    <Folder Include="wwwroot\lib\images\dynamic\" />
     <Folder Include="wwwroot\lib\images\static\" />
   </ItemGroup>
 

@@ -23,7 +23,11 @@ export default class Float{
     }
 
     #floatStart(domString){
-        this.#mainFloatDom = document.createElement("section")
+        if(document.querySelector(".float")){
+            document.querySelector(".float").remove()
+            this.#mainFloatDom = document.createElement("section")
+        }
+
         this.#mainFloatDom.className = "float"
         this.#mainFloatDom.innerHTML = domString
         document.body.append(this.#mainFloatDom)
@@ -184,7 +188,7 @@ export default class Float{
         let child = this.#mainFloatDom.children[0];
         gsap.to(child, {y: -100, opacity: 0, duration:.3}).then(() => {
             this.#mainFloatDom.remove()
-            if(runAtEnd)runAtEnd()
+            if(runAtEnd != null)runAtEnd()
         })
     }
 }

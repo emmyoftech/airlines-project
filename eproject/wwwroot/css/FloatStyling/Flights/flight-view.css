@@ -1,0 +1,63 @@
+.flight-view-float{
+    background-color: var(--primaryPallete);
+    width: 70%;
+    display: flex;
+    gap: var(--medNum);
+    flex-flow: column;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.top span{
+    padding: var(--smallNum);
+    cursor: pointer;
+}
+
+.flight-view-float h1{
+    font-size: var(--medNum);
+    text-transform: capitalize;
+}
+
+.flight-view-float section{
+    display: grid;
+    grid-template-areas: "flight plane" "deAirport arAirport";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 400px;
+    gap: var(--smallNum);
+}
+
+.flight-view-float section > div{
+    background-color: var(--primaryColor);
+    border-radius: var(--smallNum);
+    display: flex;
+    flex-flow: column;
+    padding: var(--medNum);
+}
+
+.flight-view-float section > div h2{
+    font-family: var(--titleFont);
+    font-size: var(--medNum);
+    text-transform: capitalize;
+    flex: 1;
+}
+
+.flight-view-float section > div ul{
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+    padding: var(--medNum) 0;
+    flex: 6;
+    overflow-y: scroll;
+}
+
+.flight-view-float section > div li{
+    list-style: none;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--medNum);
+}

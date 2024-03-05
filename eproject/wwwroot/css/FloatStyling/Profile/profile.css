@@ -1,0 +1,70 @@
+.profile-float{
+    width: 50%;
+    background-color: var(--primaryPallete);
+    display: flex;
+    container-type: inline-size;
+    gap: var(--smallNum);
+}
+.profLinks{
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+    padding: var(--medNum) var(--smallNum) var(--smallNum) var(--smallNum);
+    list-style: none;
+    height: 400px;
+    background-color: var(--tertiaryPallete);
+    border-radius: var(--smallNum);
+}
+
+.profLinks li{
+    font-size: var(--medNum);
+    font-family: var(--secondFont);
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: var(--smallNum);
+    border-radius: var(--smallNum);
+    transition: .3s ease;
+    display: flex;
+    gap: var(--medNum);
+}
+.profLinks li.active{
+    background-color: var(--quadtiaryPallete);
+    color: var(--tertiaryPallete);
+}
+
+
+.profView{
+    flex: 4;
+    display: flex;
+    flex-flow: column;
+    background-color: var(--tertiaryPallete);
+    border-radius: var(--smallNum);
+}
+.profView i{
+    align-self: flex-end;
+    margin: var(--smallNum);
+    font-size: 16px;
+}
+.headtitle{
+    text-transform: capitalize;
+    font-size: calc(var(--medNum) + 2px);   
+}
+
+input.fail{
+    border: solid 1px var(--err-red);
+}
+@container(width < 400px){
+    .profLinks{
+        height: 500px;
+        max-width: 40px;
+        min-width: 0px;
+    }
+    .profLinks li{
+        justify-content: center;
+    }
+    .profLinks p{
+        display: none;
+    }
+}

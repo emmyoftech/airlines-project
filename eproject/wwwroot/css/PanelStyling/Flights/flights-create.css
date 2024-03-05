@@ -1,0 +1,26 @@
+.flights-create-component{
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    gap: var(--medNum);
+    padding: var(--smallNum) var(--medNum);
+}
+.nav{
+    display: flex;
+    align-items: center;
+    flex: .5;
+}
+
+form{
+    flex: 7;
+    overflow-y: scroll;
+    max-height: 350px;
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+
+.flights-create-component button{
+    align-self: flex-end;
+    padding: var(--smallNum) var(--medNum);
+}

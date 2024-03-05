@@ -1,10 +1,15 @@
 import { env } from "../services/env.js";
 import { Controller } from "../services/Controller.js";
 import User from "../interfaces/user.js";
+import Airport from "./Airport/airports.js";
+import Planes from "./Planes/planes.js";
+import Flights from "./Flights/flights.js";
 
 
 export default class SidebarComponent extends Controller{
     #userObj = new User()
+
+    currViewController
 
     constructor(parentElement, user) {
         super(parentElement, "panel=sidebar", () => this.#starter())
@@ -12,8 +17,9 @@ export default class SidebarComponent extends Controller{
     }
 
     #starter() {
-        this.#setLinks(this.#userObj.Role, this)
-        this.domElement.querySelector(".logoutTab").onclick = () => this.float.askQuestion("Are you sure you want to logout");
+        this.#setLinks(this.#userObj.Role)
+        this.changeView("flights")
+        this.domElement.querySelector(".logoutTab").onclick = () => this.float.askQuestion("Are you sure you want to logout", ()=> this.logout());
     }
 
     /**
@@ -33,7 +39,7 @@ export default class SidebarComponent extends Controller{
             dom.onclick = () => {
                 sideBarLinkDom.querySelectorAll("li").forEach(item => item.classList.remove("active"))
                 dom.classList.add("active")
-                this.#changeView(obj.link)
+                this.changeView(obj.link)
             }
             dom.innerHTML = `
                 <i class="fa-${obj.icon.type} ${obj.icon.class}"></i>
@@ -56,9 +62,38 @@ export default class SidebarComponent extends Controller{
      *  Takes the name of a controller and appends it to view
      * @returns {void}
      */
-    #changeView = (location) => this.acquiredController.navigateTo(location)
+    changeView = (location) => {
+        const mainDom = this.domElement.parentElement.querySelector(".body")
+
+        if(this.currViewController){
+            this.currViewController._destroy(() => viewChange(this))
+        }else{
+            viewChange(this)
+        }
+
+        /**
+         * 
+         * @param {SidebarComponent} controller 
+         */
+        function viewChange (controller){
+            switch (location){
+                case "airports": controller.#instatiateView(new Airport(mainDom))
+                break
+                case "planes": controller.#instatiateView(new Planes(mainDom))
+                break
+                case "flights": controller.#instatiateView(new Flights(mainDom))
+                break
+            }
+            controller.acquiredController.navigateTo(location)
+            controller.currViewController.acquiredController = controller
+        }
+    }
+
+    #instatiateView(object){
+        this.currViewController = object
+    }
 
     logout(){
-        
+        location.href = "/"
     }
-}
+} 

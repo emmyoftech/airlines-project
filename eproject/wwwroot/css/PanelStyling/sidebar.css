@@ -1,6 +1,6 @@
 ﻿.sidebar-component {
     grid-area: sidebar;
-    background-color: whitesmoke;
+    background-color: var(--tertiaryPallete);
     border-radius: var(--baseNum);
     display: grid;
     grid-template-areas: "profile" "links" "logout";

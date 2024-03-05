@@ -131,20 +131,6 @@ button{
 .pass-point.active{
     color: green;
 }
-.authMainErrMsg{
-    width: 100%;
-    height: max-content;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    font-family: var(--secondFont);
-    background-color: var(--fail-red);
-    color: var(--err-red);
-    padding: var(--smallNum);
-    border-radius: var(--smallNum);
-    font-size: var(--medNum);
-    margin-bottom: var(--medNum);
-}
 .err-msg{
     color: var(--err-red);
     display: block;

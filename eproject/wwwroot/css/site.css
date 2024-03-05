@@ -23,6 +23,8 @@
 }
 
 :root{
+    --primaryColor: whitesmoke;
+    --secondaryColor: black;
     --primaryPallete: #EEE8AA;
     --secondaryPallete: #95951B;
     --tertiaryPallete: #FCFAEA;
@@ -74,4 +76,71 @@ html{
     height: 30px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.err-msg{
+    display: block;
+    font-size: var(--medNum);
+    color: var(--err-red);
+    font-family: var(--titleFont);
+}
+
+.err-msg::first-letter{
+    text-transform: capitalize;
+}
+
+.fade{
+    opacity: .7;
+    pointer-events: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    appearance: none;
+}
+
+.authMainErrMsg{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-family: var(--secondFont);
+    background-color: var(--fail-red);
+    color: var(--err-red);
+    padding: var(--smallNum);
+    border-radius: var(--smallNum);
+    font-size: var(--medNum);
+    margin-bottom: var(--medNum);
+}
+.authMainErrMsg.succ{
+    background-color: var(--tertiaryPallete);
+    color: var(--quadtiaryPallete);
+}
+
+*::-webkit-scrollbar{
+    width: 13px;
+}
+*::-webkit-scrollbar-thumb{
+    width: 100%;
+    background-color: var(--quadtiaryPallete);
+    border-radius: var(--smallNum);
+    border: 3px solid var(--tertiaryPallete);
+}
+*::placeholder{
+    text-transform: capitalize;
+}
+button p{
+    pointer-events: none;
+}
+.primary-btn{
+    background-color: var(--quadtiaryPallete);
+    color: var(--tertiaryPallete);
+    text-transform: capitalize;
+    border-radius: var(--smallNum);
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--medNum);
 }

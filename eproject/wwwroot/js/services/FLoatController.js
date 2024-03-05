@@ -34,15 +34,19 @@ export default class FloatController extends Float{
     #stageFloatCss(){
         let link = document.createElement("link")
         link.rel = "stylesheet"
-        link.href = env.floatPartialsStyles.concat(this.floatName, ".css")
+        let floatlink = this.floatName.split("=")
+        link.href = env.floatPartialsStyles.concat(`${floatlink[1] ? floatlink[0] + "/" + floatlink[1]: floatlink[0]}`, ".css")
         document.head.append(link)
     }
 
     #stageBody(runBody){
-        fetch(env.floatPartials.concat(this.floatName, ".htm"), {method: "get", cache: "no-cache"})
+        let floatlink = this.floatName.split("=")
+
+        fetch(env.floatPartials.concat(`${floatlink[1] ? floatlink[0] + "/" + floatlink[1]: floatlink[0]}`, ".htm"), {method: "get", cache: "no-cache"})
         .then(res => res.text())
         .then(data => {
-            runBody(`<div class="${this.floatName}-float">${data}</div>`)
+            const name = this.floatName.includes("=") ? this.floatName.split("=")[1] : this.floatName
+            runBody(`<div class="${name}-float">${data}</div>`)
         })
     }
-}
+} 

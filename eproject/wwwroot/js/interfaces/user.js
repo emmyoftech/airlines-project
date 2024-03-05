@@ -4,15 +4,15 @@
  */
 export default class User {
     Id
-    
+
     FirstName
-    
+
     LastName
-    
+
     Email
-    
+
     Password
-    
+
     EmailConfirmed
 
     PhoneNumber
@@ -20,11 +20,11 @@ export default class User {
     Gender
 
     Role
-    
+
     LogStatus
-    
+
     RegisteredOn
-    
+
     /**
      * 
      * @param {number} Id 

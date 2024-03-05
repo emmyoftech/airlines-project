@@ -79,5 +79,16 @@
 
 .subProfileInfo{
     flex: 1;
-    border: var(--line);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    padding: 0% 2%;
+}
+.subProfInfo{
+    display: flex;
+    justify-content: space-between;
+    gap: var(--medNum);
+}
+.title{
+    text-transform: capitalize;
 }

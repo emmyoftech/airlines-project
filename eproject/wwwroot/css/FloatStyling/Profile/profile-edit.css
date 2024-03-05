@@ -1,0 +1,64 @@
+.profile-edit-component{
+    flex: 1;
+    padding: var(--smallNum) var(--medNum);
+    display: flex;
+    flex-flow: column;
+    gap: var(--largeNum);
+    container-type: inline-size;
+}
+
+.headtitle{
+    text-transform: capitalize;
+    font-size: calc(var(--medNum) + 2px);
+}
+
+form{
+    column-count: 2;
+    column-gap: var(--medNum);
+}
+
+form label{
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    gap: var(--smallNum);
+    height: max-content;
+}
+
+form label h3{
+    text-transform: capitalize;
+    font-size: var(--medNum);
+}
+
+form label input{
+    outline: none;
+    background-color: transparent;
+    padding: var(--smallNum) 0;
+    padding-left: var(--smallNum);
+    border: solid 1px;
+    border-radius: var(--smallNum);
+    height: 35px;
+}
+
+label[for="subbtn"]{
+    width: max-content;
+    text-transform: capitalize;
+    align-self: flex-end;
+    background-color: var(--quadtiaryPallete);
+    color: var(--primaryPallete);
+    padding: var(--smallNum);
+    border-radius: var(--smallNum);
+    transition: .3s;
+    cursor: pointer;
+    display: flex;
+    gap: var(--medNum);
+}
+
+@container(width < 300px){
+    form{
+        column-count: 1;
+    }
+    form label{
+        margin: var(--smallNum) 0;
+    }
+}

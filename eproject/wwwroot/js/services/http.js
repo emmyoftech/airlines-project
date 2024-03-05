@@ -45,4 +45,8 @@ export default class Http{
     put(endpoint, body, onCallBack, onfail = null){
         this.#fetcher(endpoint, "put", (d) => onCallBack(d), body, onfail != null ? () => onfail(): null)
     }
+
+    delete(endpoint, onCallBack){
+        this.#fetcher(endpoint, "delete", (d) => onCallBack(d))
+    }
 } 

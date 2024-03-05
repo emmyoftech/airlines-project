@@ -2,6 +2,7 @@ import Api from "./api.js"
 import { env } from "./env.js"
 import Float from "./float.js"
 import Storage  from "./storage.js"
+
 export class Controller {
     domElement = document.createElement("div")
 
@@ -21,14 +22,14 @@ export class Controller {
 
     /**
      * 
-     * @param {Element} parentDomELement 
+     * @param {Element} parentDomELement  
      *  This is the Element that the component is going to be appended to
      * @param {string} viewName 
      *  This is the name of the component
      * @param {Function} onInitiated
      *  This is function that will be run after component has been initialised
      */
-    constructor(parentDomELement = null, viewName, onInitiated) {
+    constructor(parentDomELement, viewName, onInitiated) {
         this.parentDomELement = parentDomELement
         this.componentName = viewName.includes("=") ? viewName.split("=")[1] : viewName
         this.#setStyle(this.#setStylingPath(viewName))
@@ -48,16 +49,17 @@ export class Controller {
         let nameSplit = name.split("="),
             htmlPartialName = nameSplit[1],
             folder = nameSplit[0],
+            innerFolder = nameSplit[2],
             path = ""
 
         switch(folder){
-            case "auth":  path = env.authPartials
+            case "auth":  path = `${env.authPartials}${innerFolder ? innerFolder + "/" : ""}`
                 break
-            case "panel": path = env.panelPartials
+            case "panel": path = `${env.panelPartials}${innerFolder ? innerFolder + "/" : ""}`
                 break
-            case "float": path = env.floatPartials
+            case "float": path = `${env.floatPartials}${innerFolder ? innerFolder + "/" : ""}`
                 break
-            default: path = env.sharredPartials
+            default: path = env.sharedPartials
         }
 
         return path + htmlPartialName + ".htm"
@@ -74,14 +76,15 @@ export class Controller {
         let nameSplit = name.split("="),
             htmlPartialName = nameSplit[1],
             folder = nameSplit[0],
+            innerFolder = nameSplit[2],
             path = ""
 
         switch(folder){
-            case "auth":  path = env.authPartialsStyles
+            case "auth":  path = `${env.authPartialsStyles}${innerFolder ? innerFolder + "/" : ""}`
                 break
-            case "panel": path = env.panelPartialsStyles
+            case "panel": path = `${env.panelPartialsStyles}${innerFolder ? innerFolder + "/" : ""}`
                 break
-            case "float": path = env.floatPartialsStyles
+            case "float": path = `${env.floatPartialsStyles}${innerFolder ? innerFolder + "/" : ""}`
                 break
             default: path = env.sharedPartialsStyles
         }
@@ -107,6 +110,7 @@ export class Controller {
             this.domElement.className = this.componentName + "-component"
             this.domElement.innerHTML = data
             this.domElement.style.gridArea = this.componentName
+            this.domElement.style.overflow = "hidden"
             this.parentDomELement.append(this.domElement)
             this.isInitiated = true
             this.domElement = document.querySelector(`.${this.componentName}-component`)
@@ -119,8 +123,11 @@ export class Controller {
     setController = (controller) => this.acquiredController = controller
 
     _destroy(whendestroyed){
-        gsap.to(this.domElement, {scale: .1, opacity: 0, duration: .3}).then(() => {
+        gsap.to(this.domElement, {scale: .1, opacity: 0, duration: .1}).then(() => {
             this.domElement.remove()
+            document.head.querySelectorAll("link").forEach(item => {
+                if(item.href.includes(this.componentName)) item.remove()
+            })
             whendestroyed ? whendestroyed() : null
         })
     }

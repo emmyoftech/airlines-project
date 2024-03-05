@@ -16,6 +16,10 @@ let env = {
     sharedPartialsStyles: "/css/sharedStyling/",
 
     floatPartialsStyles: "/css/FloatStyling/",
+
+    defaultUserImage: "/lib/images/static/user.jpg",
+
+    profileImageLoc: "/lib/images/profileImage/",
     
     links: {
         panel: '/Panel',
@@ -60,6 +64,47 @@ let env = {
                 type: "solid"
             }
         }
-    ]
+    ],
+    locations: [
+        "abuja",
+        "lagos",
+        "osun",
+        "akwa ibom",
+        "kaduna",
+        "kogi",
+        "bauchi",
+        "ogun",
+        "borno",
+        "calabar"
+    ],
+    years: [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+    ],
+    planeStates: [
+        "on stanby",
+        "in flight",
+        "unavailable"
+    ],
+    nairaSign: "₦"
 }
 export { env }

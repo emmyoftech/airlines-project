@@ -1,0 +1,34 @@
+.airport-create-component{
+    padding: var(--smallNum) var(--medNum);
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+}
+h2{
+    font-family: var(--titleFont);
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+form{
+    flex: 9;
+    display: flex;
+    flex-flow: column;
+    gap: var(--largeNum);
+    margin: 20px 0;
+}
+.airport-create-component button {
+    flex: .5;
+    align-self: flex-end;
+    padding: var(--smallNum) var(--medNum);
+    border-radius: var(--smallNum);
+    background-color: var(--quadtiaryPallete);
+    color: var(--tertiaryPallete);
+    text-transform: capitalize;
+    cursor: pointer;
+    display: flex;
+}

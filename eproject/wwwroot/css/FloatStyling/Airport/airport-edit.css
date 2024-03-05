@@ -1,0 +1,39 @@
+.airport-edit-float{
+    width: 70%;
+    background-color: var(--primaryPallete);
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+
+.airport-edit-float h1{
+    margin: 0 var(--medNum);
+}
+
+#airport-title-name{
+    text-transform: capitalize;
+}
+
+.airport-edit-float form {
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+    margin: 0 var(--medNum);
+}
+
+.actionBtns{
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--medNum);
+}
+.actionBtns button{
+    padding: var(--smallNum) var(--medNum);
+}
+
+.actionBtns button:nth-child(1){
+    background-color: var(--primaryColor);
+    color: var(--err-red);
+    border: solid 1px;
+    border-radius: var(--smallNum);
+    text-transform: capitalize;
+}

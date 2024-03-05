@@ -36,7 +36,7 @@
 .dialog-title, .ques-title{
     text-transform: capitalize;
 }
-.dialog-text, .load-text{
+.dialog-text, .load-text, .ques-text{
     font-family: var(--baseFont);
     text-align: center;
     padding: 0 var(--medNum);

@@ -1,0 +1,31 @@
+.planes-create-component{
+    flex: 1;
+    padding: var(--smallNum) var(--medNum);
+    display: flex;
+    flex-flow: column;
+    gap: var(--largeNum);
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    flex: .5;
+}
+
+form{
+    flex: 6;
+    display: flex;
+    max-height: 350px;
+    overflow-y: scroll;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+
+.btnAction{
+    flex: .2;
+    display: flex;
+    justify-content: flex-end;
+}
+button{
+    padding: var(--smallNum);
+}

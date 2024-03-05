@@ -140,6 +140,7 @@ button p{
     border-radius: var(--smallNum);
     outline: none;
     cursor: pointer;
+    border: none;
     display: flex;
     align-items: center;
     gap: var(--medNum);

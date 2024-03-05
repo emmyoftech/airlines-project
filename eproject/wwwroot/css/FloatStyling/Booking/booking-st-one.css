@@ -1,0 +1,41 @@
+.one{
+    flex-flow: column;
+    gap: var(--largeNum);
+    align-items: center;
+}
+
+.flight-detail{
+    width: 80%;
+    background-color: var(--primaryColor);
+    flex: 7;
+    padding: var(--medNum);
+    border-radius: var(--smallNum);
+    max-width: 350px;
+}
+.flight-detail h2{
+    font-family: var(--baseFont);
+    font-size: var(--medNum);
+    text-transform: capitalize;
+    margin-bottom: var(--medNum );
+}
+.details-panel{
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+.details-panel li{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    font-size: var(--medNum);
+    text-transform: capitalize;
+}
+.details-panel li p{
+    font-family: var(--titleFont);
+}
+.details-panel li b{
+    font-family: var(--secondFont);
+}
+.one button{
+    padding: var(--smallNum) var(--medNum);
+}

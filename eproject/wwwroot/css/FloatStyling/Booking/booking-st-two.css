@@ -1,0 +1,29 @@
+.two{
+    flex-flow: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.two h2{
+    font-size: var(--medNum);
+    font-family: var(--baseFont);
+    text-transform: uppercase;
+    margin-bottom: var(--largeNum);
+}
+
+.two button{
+    width: 50%;
+    min-width: 200px;
+    text-align: center;
+    padding: var(--smallNum) var(--medNum);
+    margin: var(--smallNum) 0;
+}
+
+.two button:not(.primary-btn){
+    border-radius: var(--smallNum);
+    text-transform: capitalize;
+    border: 2px solid var(--quadtiaryPallete);
+    font-weight: bold;
+    cursor: pointer;
+}

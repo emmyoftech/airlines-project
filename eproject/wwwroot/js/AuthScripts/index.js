@@ -1,3 +1,4 @@
+
 import NavBarComponent from "../shared/navbar.js";
 import SigninComponent from "./signin-component.js";
 import signupComponent from "./signup-component.js";

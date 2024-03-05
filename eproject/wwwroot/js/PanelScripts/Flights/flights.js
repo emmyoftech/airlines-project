@@ -28,8 +28,7 @@ export default class Flights extends Controller{
                     this.api.getFlights(flights => {
                         this.float.floatEnd(() => {
                             this.#flights = flights
-                            new BookingCreate(7, flights[0])
-
+                                new BookingCreate(this.acquiredController.userObj, flights[1])
                             this.#starter()
                         })
                      })

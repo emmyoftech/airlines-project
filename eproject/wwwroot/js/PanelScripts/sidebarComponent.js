@@ -7,17 +7,17 @@ import Flights from "./Flights/flights.js";
 
 
 export default class SidebarComponent extends Controller{
-    #userObj = new User()
+    userObj = new User()
 
     currViewController
 
     constructor(parentElement, user) {
         super(parentElement, "panel=sidebar", () => this.#starter())
-        this.#userObj = user
+        this.userObj = user
     }
 
     #starter() {
-        this.#setLinks(this.#userObj.Role)
+        this.#setLinks(this.userObj.Role)
         this.changeView("flights")
         this.domElement.querySelector(".logoutTab").onclick = () => this.float.askQuestion("Are you sure you want to logout", ()=> this.logout());
     }

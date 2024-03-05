@@ -1,0 +1,40 @@
+.three{
+    flex-flow: column;
+    padding-top: var(--largeNum);
+    gap: var(--medNum);
+}
+.three h2{
+    font-family: var(--baseFont);
+    font-size: var(--medNum);
+    text-transform: capitalize;
+}
+
+.seatlist{
+    max-height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 300px;
+    overflow-y: scroll;
+    gap: var(--medNum);
+}
+
+.seat{
+    width: 40px;
+    height: 40px;
+    background-color: var(--primaryColor);
+    border-radius: var(--smallNum);
+    display: grid;
+    place-items: center;
+    font-family: var(--baseFont);
+    cursor: pointer;
+    transition: .3s;
+}
+.seat:hover,
+.seat.active{
+    background-color: var(--quadtiaryPallete);
+    color: var(--secondaryPallete);
+}
+.three button{
+    padding: var(--smallNum) var(--medNum);
+    align-self: flex-end;
+}

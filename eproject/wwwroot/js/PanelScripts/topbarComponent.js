@@ -22,13 +22,15 @@ export default class TopbarComponent extends Controller {
 
     navigateTo(location) {  
         const navtigateView = this.domElement.querySelector(".navigator")
-        animateAndDo(navtigateView, () => {
-            navtigateView.textContent = location
-        }, {
-            anim_name: "top-to-bottom",
-            anim_dur: .3,
-            doFrom: "halfway"
-        })
+        try{
+            animateAndDo(navtigateView, () => {
+                navtigateView.textContent = location
+            }, {
+                anim_name: "top-to-bottom",
+                anim_dur: .3,
+                doFrom: "halfway"
+            })
+        }catch{}
     }
 
     setImage(user){

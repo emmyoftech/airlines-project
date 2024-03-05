@@ -1,0 +1,28 @@
+@import "./booking-st-one.css";
+@import "./booking-st-two.css";
+@import "./booking-st-three.css";
+
+.booking-create-float{
+    background-color: var(--primaryPallete);
+    width: 70%;
+    display: flex;
+    flex-flow: column;
+}
+.top{
+    display: flex;
+    flex: .5;
+    justify-content: space-between;
+    gap: var(--medNum);
+    align-items: center;
+    max-height: 30px;
+}
+.booking-create-float h1{
+    font-family: var(--titleFont);
+    text-transform: capitalize;
+    font-size: var(--medNum);
+    display: flex;
+}
+.booking-stage{
+    display: none;
+    flex: 7;
+}

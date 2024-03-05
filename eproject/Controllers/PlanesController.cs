@@ -177,5 +177,48 @@ namespace eproject.Controllers
 
             return Ok(res);
         }
+
+        [HttpGet] 
+        public IActionResult GetBuisnessSeats(int planeId) 
+        {
+            List<BuisnessClassSeat> allBuisnessClassSeats = [.. db.BuisnessClassSeats];
+
+            if(allBuisnessClassSeats.Count > 0)
+            {
+                List<BuisnessClassSeat> selectedSeats = allBuisnessClassSeats.FindAll(x => x.PlaneId == planeId);
+
+                if (selectedSeats.Count > 0)
+                    return Json(selectedSeats);
+                else
+                    return Ok("no buisness seats of required plane");
+            }
+            else
+            {
+                return Ok("no buisness seats at all");
+            }
+
+        }
+
+        
+        [HttpGet]
+        public IActionResult GetCommunitySeats(int planeId)
+        {
+            List<CommunitySeat> allCommunitySeats = [.. db.CommunitySeats];
+
+            if (allCommunitySeats.Count > 0)
+            {
+                List<CommunitySeat> selectedSeats = allCommunitySeats.FindAll(x => x.PlaneId == planeId);
+
+                if (selectedSeats.Count > 0)
+                    return Json(selectedSeats);
+                else
+                    return Ok("no community seats of required plane");
+            }
+            else
+            {
+                return Ok("no community seats at all");
+            }
+
+        }
     }
 }

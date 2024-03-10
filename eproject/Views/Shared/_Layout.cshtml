@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Emylines</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/eproject.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="@ViewData["CarStyle"]" />
     <link rel="stylesheet" href="@ViewData["Style"]" />
     <script src="~/js/site.js" type="module"></script>
     <script src="~/lib/plugins/gsap.js"></script>
@@ -15,6 +16,7 @@
     @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
     <script src="https://kit.fontawesome.com/3691b5190a.js" crossorigin="anonymous"></script>
-    <script src="@ViewData["CarScript"]" defer></script>
+    <script src="@ViewData["Jquery"]"></script>
+    <script src="@ViewData["CarScript"]"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 @import "./booking-st-one.css";
 @import "./booking-st-two.css";
 @import "./booking-st-three.css";
+@import "./booking-st-four.css";
 
 .booking-create-float{
     background-color: var(--primaryPallete);
@@ -15,6 +16,7 @@
     gap: var(--medNum);
     align-items: center;
     max-height: 30px;
+    text-transform: capitalize;
 }
 .booking-create-float h1{
     font-family: var(--titleFont);

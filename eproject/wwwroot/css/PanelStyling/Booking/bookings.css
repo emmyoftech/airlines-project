@@ -1,0 +1,46 @@
+.bookings-component{
+    padding: var(--medNum);
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    gap: var(--largeNum);
+}
+.nav{
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+}
+
+.search-actionbtns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search{
+    background-color: var(--primaryColor);
+    padding: var(--smallNum);
+    border-radius: var(--medNum);
+    align-self: flex-start;
+}
+.search i{
+    font-size: var(--medNum);
+}
+.search input{
+    border: none;
+    outline: none;
+    height: 25px;
+    width: 150px;
+    background-color: inherit;
+    padding: 0 var(--medNum);
+}
+.list-body{
+    flex: 6;
+    display: flex;
+}
+.table{
+    flex: 1;
+    display: none;
+    flex-flow: column;
+    gap: var(--medNum);
+}

@@ -1,8 +1,182 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    ViewData["Script"] = "/js/Home/index.js";
+    ViewData["Style"] = "/css/Home/index.css";
 }
 <!-- THIS IS THE HOME PAGE-->
+<div class="bgBox"></div>
+<main>
+    <header>
+        <h2 class="title-text">it's more than just a trip</h2>
+        <button>book a fllght</button>
+    </header>
+    <section class="flights">
+        <h2>flights</h2>
+        <p>
+            Embark on an unforgettable journey with our 
+            exceptional flight experience! At SkyWings 
+            Airways, we redefine air travel, offering you 
+            more than just a destination – we provide a 
+            seamless fusion of comfort, luxury, and efficiency. 
+            Picture yourself soaring through the clouds in our 
+            state-of-the-art aircraft, where every seat is designed for 
+            maximum comfort. Our friendly and professional cabin crew is 
+            dedicated to ensuring your every need is met
+        </p>
 
-<h1>
-    HOME PAGE
-</h1>
+        <div class="list">
+            <div class="table">
+                <div class="row">
+                    <span class="cell">path</span>
+                    <span class="cell">price</span>
+                    <span class="cell">departure date</span>
+                    <span class="cell">remaining seats</span>
+                    <span class="cell"></span>
+                </div>
+
+                <div class="table-body"></div>
+            </div>
+            <div class="loader">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="airports">
+        <h2>our airports</h2>
+        <div class="portslist">
+            <div class="portBox">
+                <div class="portBoxImgBox">
+                    <img src="/lib/images/static/airports/airport5.jpg" alt="">
+                </div>
+                <h3>Emylines(akwa ibom)</h3>
+            </div>
+
+            <div class="portBox">
+                <div class="portBoxImgBox">
+                    <img src="/lib/images/static/airports/airport6.jpg" alt="">
+                </div>
+                <h3>Emylines(kaduna)</h3>
+            </div>
+
+            <div class="portBox">
+                <div class="portBoxImgBox">
+                    <img src="/lib/images/static/airports/airport1.jpg" alt="">
+                </div>
+                <h3>Emylines(abuja)</h3>
+            </div>
+
+            <div class="portBox">
+                <div class="portBoxImgBox">
+                    <img src="/lib/images/static/airports/airport2.jpg" alt="">
+                </div>
+                <h3>Emylines(portharcut)</h3>
+            </div>
+
+            <div class="portBox">
+                <div class="portBoxImgBox">
+                    <img src="/lib/images/static/airports/airport3.jpg" alt="">
+                </div>
+                <h3>Emylines(lagos)</h3>
+            </div>
+
+            <div class="portBox">
+                <div class="portBoxImgBox">
+                    <img src="/lib/images/static/airports/airport4.jpg" alt="">
+                </div>
+                <h3>Emylines(calabar)</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>about us</h2>
+        <div class="abt-hold">
+            <div class="abt">
+                <h3>our vision</h3>
+                <p> 
+                    At EmyLines, we envision a future where seamless connectivity 
+                    transcends borders, bringing people together and creating extraordinary 
+                    travel experiences in Nigeria. Our commitment is to redefine air travel, 
+                    setting new standards of excellence, innovation, and sustainability. 
+                    We aspire to be the preferred choice for passengers seeking not 
+                    just flights but unforgettable journeys marked by safety, comfort, 
+                    and personalized service. EmyLines is dedicated to shaping 
+                    the skies with a pioneering spirit, fostering global connections, and 
+                    contributing to a world where the joy of exploration knows no limits.
+                </p>
+            </div>
+
+            <div class="abt">
+                <h3>our mission</h3>
+                <p> 
+                    At EmyLines,  our mission is to seamlessly connect the world by 
+                    providing safe, reliable, and exceptional air travel experiences. 
+                    We are committed to delivering unparalleled customer service, 
+                    fostering a culture of innovation, and prioritizing sustainability 
+                    in all our operations. Our goal is to be the preferred choice for 
+                    passengers, employees, and partners alike, as we soar towards a future 
+                    where distance is no barrier and every journey is a source of 
+                    inspiration and connection.
+                </p>
+            </div>
+        </div>        
+    </section>
+
+    <section class="contact">
+        <h2>contact us</h2>
+        <p>
+            Thank you for choosing Emylines for your journey! 
+            Whether you have questions, feedback, or require 
+            assistance, our dedicated team is here to help. 
+            Your satisfaction is our priority. Feel free 
+            to reach out to us 
+        </p>
+        <div class="conHold">
+            <div class="comInfo">
+                <div class="info">
+                    <div class="iconspace">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="infospace">
+                        <h3>Adress</h3>
+                        <p>39, seaside town, off Madgide Rd, lekki lagos, Nigeria</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <div class="iconspace">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="infospace">
+                        <h3>Phone</h3>
+                        <p>+234-9066057393</p>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="iconspace">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="infospace">
+                        <h3>Email</h3>
+                        <p>emylines@emylines.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comInput">
+                <label id="fname"></label>
+                <label id="lname"></label>
+                <label id="email"></label>
+                <label>
+                    <h2>message</h2>
+                    <textarea ></textarea>
+                </label>
+                <button class="primary-btn"><p>send</p></button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        thanks for choosing emylines
+    </footer>
+</main>

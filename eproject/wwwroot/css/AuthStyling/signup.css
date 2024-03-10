@@ -1,6 +1,15 @@
 .signup-component{
-    display: grid;
-    place-items: center;   
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--medNum);  
+}
+.signup-component > h1{
+    text-transform: uppercase;
+}
+.signup-component > p{
+    text-transform: capitalize;
 }
 .twoInputHold{
     display: flex;

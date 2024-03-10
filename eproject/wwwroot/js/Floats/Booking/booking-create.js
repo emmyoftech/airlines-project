@@ -34,6 +34,7 @@ export default class BookingCreate extends FloatController {
     constructor(userCred, flightMod){
         super("Booking=booking-create", (dom) => {
             this.#getUser(userCred, dom)
+            dom.querySelector("#booking-ret").onclick = ()=> this.floatEnd()
         })
         this.#flight = flightMod
     }
@@ -49,7 +50,6 @@ export default class BookingCreate extends FloatController {
                 this.#user = users.find(user => user.Id == userInfo)
 
                 if(this.#user != null){
-                    fl_dom.querySelector("h1").textContent = this.#user.FirstName
                     this.#getPlaneAndSeats(fl_dom)
                 }else{
                     this.dialog(this.DIALOG_ERROR, "failed to find user data", "authentication failed")
@@ -86,7 +86,10 @@ export default class BookingCreate extends FloatController {
                                     this.#dp_Airport = airports.find(item => item.Id == this.#flight.DepartureAirportId)
 
                                     if(this.#ar_Airport && this.#dp_Airport){
-                                        this.#openStage("three", fl_dom)
+                                        this.#openStage("one", fl_dom)
+
+                                        fl_dom.querySelector("#flight-title").textContent = `${this.#dp_Airport.Location} to ${this.#ar_Airport.Location}`
+                                        console.log("helo")
                                     }else{
                                         this.dialog(this.DIALOG_ERROR, "no airport matches flight")
                                     }
@@ -118,7 +121,9 @@ export default class BookingCreate extends FloatController {
                 break
                 case "two": this.#stage2(newStageDom)
                 break
-                default: this.#stage3(newStageDom)
+                case "three": this.#stage3(newStageDom)
+                break
+                default: this.#stage4(newStageDom)
             }
         })
     }
@@ -168,7 +173,9 @@ export default class BookingCreate extends FloatController {
         buton = listHold.parentElement.querySelector("button")
 
         for(const seat of this.#isBuisnessClass ? this.#buisness_seats : this.#community_seats){
-            populateseat(seat, ()=> {
+            populateseat(seat, num => {
+                this.#booking.SeatNumber = num
+                this.#booking.Price = this.#isBuisnessClass ? this.#flight.PricePerSeat + ((this.#flight.PricePerSeat * 30) / 100) : this.#flight.PricePerSeat
                 openButton(true, buton)
             })
         }
@@ -185,13 +192,52 @@ export default class BookingCreate extends FloatController {
             }
             seat.onclick = ()=> {
                 seat.classList.add("active")
-                
-                run()
+                run(seatClass.seatNumber)
             }
             listHold.append(seat)
         }
 
         buton.onclick = () => this.#openStage("four", dom.closest(".booking-create-float"))
         openButton(false, buton)
+    }
+
+    /**
+     * 
+     * @param {HTMLElement} dom 
+     */
+    #stage4(dom){
+        const
+        flghtDom = dom.querySelector(".flight"),
+        priceDom = dom.querySelector(".price"),
+        flghtTypeDom = dom.querySelector(".flight-type"),
+        seatNumberDom = dom.querySelector(".seat-number")
+
+        this.#booking.FlightId = this.#flight.Id
+        this.#booking.UserId = this.#user.Id
+        this.#booking.PaymentVerfied = true
+
+
+        flghtDom.textContent = `${this.#dp_Airport.Location} to ${this.#ar_Airport.Location}`
+        priceDom.textContent = `${env.nairaSign} ${this.#booking.Price}`
+        flghtTypeDom.textContent = this.#isBuisnessClass ? "buisness class" : "community class"
+        seatNumberDom.textContent = this.#booking.SeatNumber
+
+        dom.querySelector("button").onclick = ()=> this.#save()
+    }
+
+    #save(){
+        this.floatEnd(() => {
+            this.floatLoad("creating booking...")
+            this.api.createBooking(this.#booking, res => {
+                this.floatEnd(() => {
+                    if(res == "success"){
+                        const msg = `you have been successfully been booked for ${this.#dp_Airport.Location.toUpperCase()} to ${this.#ar_Airport.Location.toUpperCase()} flight`
+                        this.dialog(this.DIALOG_SUCCESS, msg)
+                    }else{
+                        this.dialog(this.DIALOG_ERROR, res)
+                    }
+                })
+            })
+        })
     }
 }

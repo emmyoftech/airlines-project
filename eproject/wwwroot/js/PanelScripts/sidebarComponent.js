@@ -4,6 +4,8 @@ import User from "../interfaces/user.js";
 import Airport from "./Airport/airports.js";
 import Planes from "./Planes/planes.js";
 import Flights from "./Flights/flights.js";
+import Bookings from "./Booking/bookings.js";
+import Dashboard from "./dashboard.js";
 
 
 export default class SidebarComponent extends Controller{
@@ -18,7 +20,7 @@ export default class SidebarComponent extends Controller{
 
     #starter() {
         this.#setLinks(this.userObj.Role)
-        this.changeView("flights")
+        this.changeView("dashboard")
         this.domElement.querySelector(".logoutTab").onclick = () => this.float.askQuestion("Are you sure you want to logout", ()=> this.logout());
     }
 
@@ -82,6 +84,10 @@ export default class SidebarComponent extends Controller{
                 case "planes": controller.#instatiateView(new Planes(mainDom))
                 break
                 case "flights": controller.#instatiateView(new Flights(mainDom))
+                break
+                case "bookings": controller.#instatiateView(new Bookings(mainDom))
+                break
+                default: controller.#instatiateView(new Dashboard(mainDom))
                 break
             }
             controller.acquiredController.navigateTo(location)

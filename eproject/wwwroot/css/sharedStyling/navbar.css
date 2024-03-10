@@ -1,8 +1,19 @@
 .navbar-component{
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 var(--medNum);
     align-items: center;
+    transition: .3s ease;
+}
+.navbar-component.active{
+    background-color: var(--tertiaryPallete);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .3);
+}
+.navbar-component.active .logoTab{
+    color: var(--quadtiaryPallete);
 }
 .authBtnHold{
     width: max-content;
@@ -12,11 +23,14 @@
 .authBtnHold a{
     text-decoration: none;
     padding: var(--smallNum) var(--medNum);
-    border-radius: var(--medNum);
+    border-radius: var(--smallNum);
     border: none;
     text-transform: capitalize;
     background-color: var(--tertiaryPallete);
     color: var(--quadtiaryPallete);
+}
+.navbar-component.active a:nth-child(1){
+    background-color: var(--primaryColor);
 }
 .authBtnHold #su{
     background-color: var(--quadtiaryPallete);

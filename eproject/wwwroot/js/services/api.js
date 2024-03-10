@@ -3,6 +3,8 @@ import User from "../interfaces/user.js"
 import AirportModel from "../interfaces/airportModel.js"
 import PlaneModel from "../interfaces/planeModel.js";
 import FlightModel from "../interfaces/flightModel.js";
+import BookingModel from "../interfaces/bookingModel.js";
+import Message from "../interfaces/messageModule.js";
 
 export default class Api{
 
@@ -251,6 +253,8 @@ export default class Api{
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
+
+    // FLIGHT API METHODS 
    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
     /**
@@ -283,5 +287,71 @@ export default class Api{
         this.#http.post("/Flight", flight, res => cb(res))
     }
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+
+
+    // BOOKING API METHODS 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+    /**
+     * 
+     * @param {BookingModel} booking 
+     * @param {Function} cb 
+     */
+    createBooking(booking, cb){
+        this.#http.post("/Booking", booking, res => cb(res))
+    }
+
+    getBookings(hasData, noData){
+        this.#http.get("/Booking", res => {
+            if(typeof res == "string"){
+                noData(res)
+            }else{
+                const bookings = new Array()
+
+                for(const booking of res){
+                     bookings.push(new BookingModel(booking.id, booking.userId, booking.flightId, booking.seatNumber, booking.price, booking.paymentVerfied))
+                }
+
+                hasData(bookings)
+            }
+        })
+    }
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+
+    // MESSAGES API METHODS 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+    
+    /**
+     * 
+     * @param {Function} hasData 
+     * @param {Function} noData 
+     */
+    getMessages(hasData, noData){
+         this.#http.get("/Message?all=true", res => {
+            if(typeof res == "string"){
+                noData(res)
+            }else{
+                const messges = new Array()
+
+                for(const message of res){
+                    messges.push(new Message(message.id, message.isMember, message.firstName, message.lastName, message.email, message.text))
+                }
+
+                hasData(messges)
+            }
+         })
+    } 
+
+    /**
+     * 
+     * @param {Message} message 
+     * @param {Function} cb 
+     */
+    createMessage(message, cb){
+        this.#http.post("/Message", message, res => cb(res))
+    }
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 }

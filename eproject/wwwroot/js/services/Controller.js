@@ -92,6 +92,11 @@ export class Controller {
         return path + htmlPartialName + ".css"
     }
 
+    /**
+     * This a string as the path to where the css is located, creates a link element 
+     * and appends it to the head of the document
+     * @param {string} csspath 
+     */
     #setStyle(csspath){
         const linkDom = document.createElement("link")
         linkDom.rel = "stylesheet"
@@ -99,6 +104,12 @@ export class Controller {
         document.head.append(linkDom)
     }
 
+    /**
+     * This gets the html data from the path ( partiallocation ) and imbeds it into the created
+     * contaner
+     * @param {string} partiallocation 
+     * @param {Function} init 
+     */
     #initializer = (partiallocation ,init) => {
         fetch(partiallocation, {
             method: "get",
@@ -118,16 +129,32 @@ export class Controller {
         }).catch((err) => console.error(err))
     }
 
+    /**
+     * Returns this controller
+     * @returns Controller
+     */
     getController = () => this 
 
+    /**
+     * Sets the acquiredController property with a initialized Controller so that the 
+     * this controller can access the functionality of the acquired controller
+     * @param {Controller} controller 
+     * @returns 
+     */
     setController = (controller) => this.acquiredController = controller
 
-    _destroy(whendestroyed){
+    /**
+     * This destroys the controller and runs a function if provided
+     * after the animation is complete
+     * @param {Function | null} whendestroyed 
+     */
+    _destroy(whendestroyed = null){
         gsap.to(this.domElement, {scale: .1, opacity: 0, duration: .1}).then(() => {
             this.domElement.remove()
             document.head.querySelectorAll("link").forEach(item => {
                 if(item.href.includes(this.componentName)) item.remove()
             })
+            delete this
             whendestroyed ? whendestroyed() : null
         })
     }

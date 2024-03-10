@@ -29,143 +29,6 @@
     cursor: pointer;
 }
 
-label{
-    display: flex;
-    flex-flow: column;
-    max-width: 300px;
-    gap: var(--medNum);
-}
-label h2{
-    text-transform: capitalize;
-    font-size: var(--medNum);
-}
-
-label input{
-    height: 30px;
-    padding: 0 var(--smallNum);
-    border-radius: var(--smallNum);
-    border: solid 1px;
-    outline: none;
-    background-color: transparent;
-}
-
-label input.fail {
-    border: solid 1px var(--err-red);
-}
-
-.select-wrap{
-    display: flex;
-    flex-flow: column;
-}
-.select-panel{
-    display: flex;
-    gap: var(--baseNum);
-}
-.select-panel input{
-    flex: 6;
-    pointer-events: none;
-}
-.select-panel input::placeholder{
-    text-transform: capitalize;
-}
-.select-panel span{
-    flex: 1;
-    border: solid 1px;
-    border-radius: var(--smallNum);
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-}
-.select-panel span.loading{
-    opacity: .3;
-    pointer-events: none;
-    cursor: auto;
-}
-.select-panel span.loading i{
-    animation: spin 3s linear infinite;
-}
-.select-items{
-    border: solid 1px;
-    border-radius: var(--smallNum);
-    width: 80%;
-    height: 0;
-    pointer-events: none;
-    opacity: 0;
-    transform: translateX(-100px);
-    min-width: 150px;
-    max-height: 120px;
-    overflow-y: scroll;
-    display: flex;
-    flex-flow: column;
-    padding: var(--smallNum) 0;
-    gap: var(--smallNum);
-    transition: .3s ease;
-}
-.select-items.active{
-    height: auto;
-    pointer-events: all;
-    opacity: 1;
-    transform: translateX(0px);
-}
-.select-items li{
-    padding: var(--smallNum) var(--medNum);
-    cursor: pointer;
-    transition: .3s ease;
-    border-radius: var(--smallNum);
-    text-transform: capitalize;
-    font-family: var(--titleFont);
-}
-.select-items li:hover,
-.select-items li.active{
-    background-color: var(--quadtiaryPallete);
-    color: var(--tertiaryPallete);
-}
-
-.numHold{
-    display: flex;
-    align-items: center;
-    gap: var(--medNum);
-}
-.numHold span{
-    border: 1px solid;
-    width: 40px;
-    height: 30px;
-    border-radius: var(--smallNum);
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-}
-.numHold #rlnumHld{
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--titleFont);
-    cursor: auto;
-    font-size: var(--medNum);
-}
-.inpCon{
-    width: 100%;
-    display: flex;
-    gap: var(--smallNum);
-}
-.inpCon span{
-    border: solid 1px;
-    width: 35px;
-    height: 100%;
-    border-radius: var(--smallNum);
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-    opacity: .5;
-}
-.inpCon span i{
-    animation: spin 2s ease infinite;
-}
-.inpCon input{
-    width: 100%;
-}
-
 .nodata{
     flex: 1;
     display: grid;
@@ -174,13 +37,15 @@ label input.fail {
     font-family: var(--baseFont);
 }
 
-
 .list{
     height: auto;
     overflow-y: scroll;
     display: flex;
     flex-flow: column;
     gap: var(--largeNum);
+}
+label{
+    max-width: 300px;
 }
 .row{
     display: flex;
@@ -193,6 +58,7 @@ label input.fail {
     padding-right:var(--medNum);
 }
 .row.head .cell{
+    font-size: var(--medNum);
     font-family: var(--titleFont);
 }
 .cell{

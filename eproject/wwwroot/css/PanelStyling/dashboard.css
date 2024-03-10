@@ -1,0 +1,63 @@
+.dashboard-component{
+    flex: 1;
+    padding: var(--medNum);
+    display: grid;
+    grid-template-areas: "mn1 mn2 mn3" "lst lst msg";
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--medNum);
+}
+
+.minibox{
+    border-radius: var(--medNum);
+    background-color: var(--primaryPallete);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: var(--baseFont);
+}
+
+.minibox p{
+    text-transform: capitalize;
+    font-size: var(--largeNum);
+}
+
+.flightList{
+    background-color: var(--primaryPallete);
+    border-radius: var(--medNum);
+    padding: var(--medNum);
+}
+.row.head{
+    margin-bottom: var(--medNum);
+}
+.row .cell:nth-child(1){
+    display: none;
+}
+
+h2{
+    font-family: var(--baseFont);
+    font-size: var(--medNum);
+    text-transform: capitalize;
+    margin-bottom: var(--medNum);
+}
+
+.row{
+    margin: var(--smallNum) 0;
+}
+
+.mesagebox{
+    background-color: var(--primaryPallete);
+    padding: var(--medNum);
+    border-radius: var(--medNum);
+}
+
+.msgBox b{
+    font-family: var(--secondFont);
+    font-size: var(--medNum);
+    text-transform: capitalize;
+}
+
+.msgBox p{
+    font-family: var(--titleFont);
+}

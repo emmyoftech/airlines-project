@@ -36,9 +36,44 @@ namespace eproject.Controllers
 
                 if(booking != null) 
                 {
-                    db.Add(booking);
-                    db.SaveChanges();
-                    res = "success";
+                    Flight? flight = db.Flights.FirstOrDefault(x => x.Id == booking.FlightId);
+                    
+
+                    if(flight != null) 
+                    {
+                        if (booking.SeatNumber > 20)
+                        {
+                            CommunitySeat? communitySeat = db.CommunitySeats.FirstOrDefault(x => x.PlaneId == flight.PlaneId && x.SeatNumber == booking.SeatNumber);
+                            if (communitySeat != null)
+                            {
+                                communitySeat.Occupied = true;
+                            }
+                            else
+                            {
+                                res = "community seat problem";
+                            }
+                        }
+                        else
+                        {
+                            BuisnessClassSeat? buisnessClassSeat = db.BuisnessClassSeats.FirstOrDefault(x => x.PlaneId == flight.PlaneId && x.SeatNumber == booking.SeatNumber);
+                            if(buisnessClassSeat != null) 
+                            {
+                                buisnessClassSeat.Occupied = true;
+                            }
+                            else
+                            {
+                                res = "buisness class seat problem";
+                            }
+                        }
+                        flight.RemainingSeats--;
+                        db.Add(booking);
+                        db.SaveChanges();
+                        res = "success";
+                    }
+                    else
+                    {
+                        res = "no flight available for this booking";
+                    }
                 }
                 else 
                 {

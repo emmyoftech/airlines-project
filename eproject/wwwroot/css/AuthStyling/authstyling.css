@@ -2,6 +2,9 @@
 main:has(.signin-component){
     grid-template-areas: "navbar" "signin" "footer";
 }
+.logoTab{
+    color: var(--quadtiaryPallete);
+}
 main:has(.signup-component){
     grid-template-areas: "navbar" "signup" "footer";
 }

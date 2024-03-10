@@ -37,6 +37,8 @@ export default class SigninComponent extends Controller{
 
             if(user){
                 if(user.Password == pass){
+                    this.storage.setUserId(user.Id)
+                    this.storage.setUserEmail(user.Email)
                     location.href = `/Panel?id=${user.Id}`
                 }else{
                     authMainError(this.domElement.querySelector(".form"), "Password is incorrect")

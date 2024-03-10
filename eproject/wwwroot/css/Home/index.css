@@ -1,0 +1,225 @@
+header{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.434);
+    background-image: url(../../lib/images/static/pexels-pixabay-62623.jpg);
+    background-blend-mode: hue;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--medNum);
+}
+.title-text{
+    font-size: calc(var(--largeNum) + 20px);
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--tertiaryPallete);
+}
+header > button{
+    padding: var(--smallNum) var(--medNum);
+    background-color: transparent;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.437);
+    text-transform: capitalize;
+    border: none;
+    font-size: calc(var(--largeNum) - 5px);
+    color: var(--tertiaryPallete);
+    cursor: pointer;
+    border-radius: var(--medNum);
+    backdrop-filter: blur(10px);
+    transition: .3s;
+}
+header > button:hover{
+    background-color: rgba(245, 245, 245, 0.641);
+}
+
+section:not(.float){
+    background-color: var(--tertiaryPallete);
+    border-radius: var(--smallNum);
+    margin: var(--medNum) auto;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 5px 5px 10px;
+    padding: var(--medNum);
+}
+
+section:not(.float)> h2{
+    text-transform: capitalize;
+    font-family: var(--titleFont);
+}
+
+.flights{
+    gap: var(--medNum);
+}
+
+.flights > p{
+    font-family: var(--secondFont);
+    font-size: var(--medNum);
+    margin: var(--largeNum) 0;
+}
+.list{
+    width: 100%;
+    height: max-content;
+    background-color: var(--primaryColor);
+    padding: var(--medNum);
+    border-radius: var(--smallNum);
+}
+.table{
+    gap: var(--medNum);
+    display: none;
+    flex-flow: column;
+}
+.row, .b-row{
+    width: 100%;
+    display: flex;
+}
+.row .cell, .b-row .cell{
+    flex: 1;
+}
+.table-body{
+    min-height: 100px;
+    max-height: 400px;
+    overflow-y: scroll;
+    display: flex;
+    gap: var(--medNum);
+    flex-flow: column;
+}
+.cell{
+    text-align: center;
+    text-transform: capitalize;
+    height: 30px;
+}
+.cell button{
+    padding: var(--smallNum) var(--largeNum);
+    background-color: var(--quadtiaryPallete);
+    color: var(--primaryColor);
+    text-transform: capitalize;
+    border-radius: var(--smallNum);
+    cursor: pointer;
+}
+
+.loader{
+    width: 100%;
+    height: 100px;
+    display: grid;
+    place-items: center;
+}
+.loader i{
+    font-size: calc(var(--baseNum) * 4);
+    animation: spin 1s linear infinite;
+}
+
+/* ABOUT */
+
+.abt-hold{
+    width: 100%;
+    height: max-content;
+    margin-top: var(--largeNum);
+}
+
+.abt{
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+.abt h3{
+    text-transform: capitalize;
+}
+.abt:nth-child(2) h3{
+    align-self: flex-end;
+}
+.abt:nth-child(2) p{
+    text-align: end;
+}
+
+.contact >p{
+    margin-top: var(--largeNum);
+}
+
+.conHold{
+    display: flex;
+    height: max-content;
+    margin-top: var(--largeNum);
+    padding: var(--largeNum);
+}
+.conHold > div{
+    flex: 1;
+    min-height: 300px;
+    height: max-content ;
+}
+
+.info{
+    display: flex;
+    margin: var(--medNum) 0;
+}
+.iconspace{
+    flex: 1;
+}
+.infospace{
+    flex: 10;
+}
+.infospace p{
+    max-width: 150px;
+}
+.comInput{
+    display: flex;
+    flex-flow: column;
+}
+textarea{
+    resize: none;
+    border: solid 1px;
+    border-radius: var(--smallNum);
+    background-color: transparent;
+    height: 100px;
+    outline: none;
+    padding: var(--medNum);
+}
+.contact button{
+    padding: var(--smallNum) var(--medNum);
+    margin-top: var(--medNum);
+    align-self: flex-end;
+}
+.contact button p{
+    pointer-events: none;
+}
+.logoTab{
+    color: var(--primaryColor);
+}
+footer{
+    height: 70px;
+    background-color: var(--quadtiaryPallete);
+    color: var(--primaryPallete);
+    text-transform: capitalize;
+    font-size: var(--largeNum);
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.portslist{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--medNum);
+    margin-top: var(--largeNum);
+}
+.portBox{
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+    font-family: var(--titleFont);
+}
+.portBoxImgBox{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: var(--smallNum);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.488);
+}
+.portBoxImgBox img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

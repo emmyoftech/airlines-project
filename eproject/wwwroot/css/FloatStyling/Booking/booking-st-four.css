@@ -1,0 +1,25 @@
+.four{
+    flex-flow: column;
+    gap: var(--medNum);
+    margin-top: var(--medNum);
+}
+
+.four ul{
+    background-color: var(--tertiaryPallete);
+    padding: var(--medNum);
+    list-style: none;
+    border-radius: var(--smallNum);
+    text-transform: capitalize;
+}
+
+.four li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--smallNum) 0;
+}
+
+.four button{
+    align-self: center;
+    padding: var(--smallNum) var(--medNum);
+}

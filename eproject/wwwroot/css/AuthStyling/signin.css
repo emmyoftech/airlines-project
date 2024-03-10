@@ -2,6 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+.signin-component > h1{
+    text-transform: uppercase;
+    font-family: var(--baseFont);
+}
+.signin-component > p{
+    text-transform: capitalize;
 }
 .form .passCon{
     padding: 0;

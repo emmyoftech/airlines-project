@@ -5,7 +5,7 @@ import signupComponent from "./signup-component.js";
 
 const mainCont = document.body.querySelector("main")
 
-new NavBarComponent(mainCont, ["home","panel"])
+new NavBarComponent(mainCont)
 
 let loc = location.href.split("/").pop().toLowerCase()
 

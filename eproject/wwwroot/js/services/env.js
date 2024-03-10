@@ -54,6 +54,13 @@ let env = {
                 class: "fa-plane-departure",
                 type: "solid"
             }
+        },
+        {
+            link: "bookings",
+            icon: {
+                class: "fa-book",
+                type: "solid"
+            }
         }
     ],
     userRoleLinks: [

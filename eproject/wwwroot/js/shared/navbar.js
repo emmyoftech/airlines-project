@@ -1,10 +1,11 @@
 import { Controller } from "../services/Controller.js"
 import { env } from "../services/env.js"
+
 export default class NavBarComponent extends Controller{
     #arraylinks
 
-    constructor(parentDom, linkArray = null){
-        super(parentDom , "navbar", ()=> this.#starter())
+    constructor(parentDom, linkArray = null){  
+        super(parentDom , "shared=navbar", ()=> this.#starter())
         this.#arraylinks = linkArray
     }
 
@@ -12,6 +13,7 @@ export default class NavBarComponent extends Controller{
         this.#signin_signup_btn_switch()
         if(this.#arraylinks != null) for(const link of this.#arraylinks) this.#appendLink(link)
         this.#makeLogoClikable()
+        this.#changeOnscroll()
     }
 
     #signin_signup_btn_switch(){
@@ -44,5 +46,15 @@ export default class NavBarComponent extends Controller{
         let logo = this.domElement.querySelector(".logoTab") 
         logo.onclick = () => location.href = "/"
         logo.style.cursor = "pointer"
+    }
+    #changeOnscroll(){
+        window.onscroll = ()=>{
+            const windowPos = Math.floor(window.scrollY)
+            if(windowPos > window.innerHeight - 200){
+                this.domElement.classList.add("active")
+            }else{
+                this.domElement.classList.remove("active")
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@
     padding: 0 var(--medNum);
     align-items: center;
     transition: .3s ease;
+    z-index: 10;
 }
 .navbar-component.active{
     background-color: var(--tertiaryPallete);

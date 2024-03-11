@@ -54,6 +54,13 @@ section:not(.float)> h2{
     gap: var(--medNum);
 }
 
+.flights img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: var(--smallNum);
+}
+
 .flights > p{
     font-family: var(--secondFont);
     font-size: var(--medNum);
@@ -190,7 +197,7 @@ textarea{
 footer{
     height: 70px;
     background-color: var(--quadtiaryPallete);
-    color: var(--primaryPallete);
+    color: var(--tertiaryPallete);
     text-transform: capitalize;
     font-size: var(--largeNum);
     display: grid;
@@ -223,4 +230,74 @@ footer{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.planeHld{
+    margin-top: var(--medNum);
+}
+
+.planeBox{
+    width: 300px;
+    height: 250px;
+    display: flex;
+    text-transform: capitalize;
+    align-items: center;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+.planeBox img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--smallNum);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.488);
+}
+
+.abt{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 6fr;
+    grid-template-areas: "tit img" "text img";
+    margin: var(--largeNum) 0;
+}
+.abt:nth-child(2){
+    grid-template-areas: "img tit" "img text";
+}
+.abt h3{
+    grid-area: tit;
+}
+.abt p{
+    grid-area: text;
+}
+.img{
+    grid-area: img;
+    object-fit: cover;
+    width: auto;
+    height: auto;
+    display: grid;
+    place-items: center;
+}
+.img img{
+    width: 80%;
+    border-radius: var(--smallNum);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.437);
+}
+
+.classes h2{
+    margin-bottom: var(--largeNum);
+}
+
+.classes h3{
+    text-transform: capitalize;
+}
+
+.clsType{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 6fr;
+    grid-template-areas: "tit img" "text img";
+    margin: var(--largeNum) 0;
+}
+.clsType:nth-child(2){
+    grid-template-areas: "img tit" "img text";
 }

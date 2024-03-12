@@ -10,6 +10,7 @@ export default class SigninComponent extends Controller{
     }
 
     #starter (){
+        this.domElement.querySelector("#fft").onclick = ()=> location.href = "/"
         this.#setUploginUser()
         this.domElement.querySelector(".fp").onclick = ()=> this.#stageFp() 
     }

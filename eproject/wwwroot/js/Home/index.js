@@ -21,6 +21,12 @@ float = new Float()
 populate_flight()
 setupContact()
 
+document.querySelector(".bbt").onclick = ()=>{
+    document.querySelector(".flights").scrollIntoView({
+        behavior: "smooth"
+    })
+}
+
 
 
 function populate_flight(){
@@ -158,3 +164,21 @@ $(document).ready(function(){
         }
     })
 });
+
+document.querySelectorAll(".ab").forEach(item => {
+    item.onclick = ()=> {
+        console.log("me")
+        document.querySelector(".about").scrollIntoView({
+            behavior: "smooth"
+        })
+    }
+})
+
+document.querySelectorAll(".cl").forEach(item => {
+    item.onclick = ()=> {
+        console.log("me")
+        document.querySelector(".classes").scrollIntoView({
+            behavior: "smooth"
+        })
+    }
+})

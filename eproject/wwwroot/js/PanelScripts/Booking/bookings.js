@@ -1,4 +1,5 @@
 import BookingModel from "../../interfaces/bookingModel.js"
+import User from "../../interfaces/user.js"
 import {Controller} from "../../services/Controller.js"
 import { env } from "../../services/env.js"
 import { shownodataDom } from "../../services/library.js"
@@ -12,10 +13,16 @@ export default class Bookings extends Controller{
 
     #airports = new Array()
 
-    constructor(parentDom){
+    #users = new Array()
+
+    #user = new User()
+
+    constructor(parentDom, user){
         super(parentDom, "panel=bookings=Booking", () => {
             this.#starter()
+            if(user) this.domElement.querySelector("#nnn").style.display = "none"
         })
+        this.#user = user
     }
 
     #starter(){
@@ -29,13 +36,22 @@ export default class Bookings extends Controller{
             this.#flights = flights
             load.changeText("getting bookings...")
             this.api.getBookings(bookings => {
-                this.#bookings = bookings
-                load.changeText("gettings airports..")
-                this.api.getAirports(airports => {
-                    this.#airports = airports
-                    this.float.floatEnd(() => {
-                        this.#populateTable()
-                    })
+                this.#bookings = this.#user ? bookings.filter(item => item.UserId == this.#user.Id) : bookings
+                if(this.#bookings.length < 1){
+                    this.float.floatEnd()
+                    shownodataDom(this.domElement.querySelector(".list-body"), "you haven't booked any flight yet")
+                    return
+                }
+                load.changeText("gettings users..")
+                this.api.getUsers(users => {
+                    this.#users = users
+                    load.changeText("getting airorts..")
+                    this.api.getAirports(airports => {
+                        this.#airports = airports
+                        this.float.floatEnd(() => {
+                            this.#populateTable()
+                        })
+                    }, msg => fail(msg))
                 }, msg => fail(msg))
             }, msg => fail(msg))
         }, msg => fail(msg))
@@ -72,12 +88,13 @@ export default class Bookings extends Controller{
         const newRow = document.createElement("div"),
         flight = this.#flights.find(item => item.Id == book.FlightId),
         dp_airport = this.#airports.find(item => item.Id == flight.DepartureAirportId),
-        ar_airport = this.#airports.find(item => item.Id == flight.ArrivalAirportId)
-
+        ar_airport = this.#airports.find(item => item.Id == flight.ArrivalAirportId),
+        user = this.#users.find(item => item.Id == book.UserId)
         newRow.className = "row"
 
         newRow.innerHTML = `
             <span class="cell"></span>
+            ${!this.#user ? `<span class="cell">${user.FirstName} ${user.LastName}</span>` : ""}
             <span class="cell">${dp_airport.Location} to ${ar_airport.Location}</span>
             <span class="cell">${book.SeatNumber}</span>
             <span class="cell">${env.nairaSign} ${book.Price}</span>

@@ -65,9 +65,9 @@ let env = {
     ],
     userRoleLinks: [
         {
-            link: "dashboard",
+            link: "my bookings",
             icon: {
-                class: "fa-table-cells-large",
+                class: "fa-book",
                 type: "solid"
             }
         }
@@ -79,6 +79,7 @@ let env = {
         "akwa ibom",
         "kaduna",
         "kogi",
+        "delta",
         "bauchi",
         "ogun",
         "borno",

@@ -20,7 +20,6 @@ export default class SidebarComponent extends Controller{
 
     #starter() {
         this.#setLinks(this.userObj.Role)
-        this.changeView("dashboard")
         this.domElement.querySelector(".logoutTab").onclick = () => this.float.askQuestion("Are you sure you want to logout", ()=> this.logout());
     }
 
@@ -50,9 +49,11 @@ export default class SidebarComponent extends Controller{
             sideBarLinkDom.append(dom)
         }
 
-        if (userRole == "admin")
+        if (userRole == "admin"){
+            this.changeView("dashboard")
             for (let obj of env.adminRoleLinks) { poplulateLinks(obj) }
-        else {
+        }else {
+            this.changeView("my bookings")
             for (let obj of env.userRoleLinks) { poplulateLinks(obj) }
         }
 
@@ -86,6 +87,10 @@ export default class SidebarComponent extends Controller{
                 case "flights": controller.#instatiateView(new Flights(mainDom))
                 break
                 case "bookings": controller.#instatiateView(new Bookings(mainDom))
+                break
+                case "my flights": controller.#instatiateView(new Flights(mainDom, controller.userObj))
+                break
+                case "my bookings": controller.#instatiateView(new Bookings(mainDom, controller.userObj))
                 break
                 default: controller.#instatiateView(new Dashboard(mainDom))
                 break

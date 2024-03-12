@@ -6,6 +6,7 @@
     grid-template-areas: "profile" "links" "logout";
     grid-template-rows: .5fr 8fr .5fr;
     grid-template-columns: 1fr;
+    box-shadow: 0px 0px 5px;
     row-gap: 10px;
 }
 
@@ -26,7 +27,7 @@
     align-items: center;
     gap: var(--medNum);
     padding: 0 var(--baseNum);
-    border-radius: var(--baseNum);
+    border-radius: var(--smallNum);
     cursor: pointer;
     transition: .3s ease;
 }
@@ -35,8 +36,9 @@
     font-size: var(--baseNum);
 }
 .sideLink.active, .sideLink.sideLink.active:hover{
-    background-color: var(--quadtiaryPallete);
+    background-color: #005c64;
     color: var(--tertiaryPallete);
+    box-shadow: 0px 0px 5px black;
 }
 .sideLink:hover{
     background-color: chocolate;

@@ -26,6 +26,7 @@ export default class signupComponent extends Controller {
     }
 
     #stage1() {
+        this.domElement.querySelector("#fft").onclick = ()=> location.href = "/"
         const
             firstNameDom = this.domElement.querySelector("#firname"),
             lastNameDom = this.domElement.querySelector("#lasname"),

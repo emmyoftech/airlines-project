@@ -5,18 +5,37 @@
 }
 
 .four ul{
-    background-color: var(--tertiaryPallete);
     padding: var(--medNum);
     list-style: none;
     border-radius: var(--smallNum);
     text-transform: capitalize;
+    position: relative;
 }
+
+.four ul::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--smallNum);
+    background-attachment: fixed;
+    opacity: .5;
+    z-index: -1;
+    background-color: var(--tertiaryPallete);
+    background-image: url("/lib/images/static/other/patt.png");
+    background-blend-mode: darken;
+}
+
 
 .four li{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: var(--smallNum) 0;
+    color: var(--tertiaryPallete);
+    text-shadow: 0px 0px 5px black;
 }
 
 .four button{

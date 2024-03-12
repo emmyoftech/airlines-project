@@ -4,6 +4,8 @@
     display: flex;
     flex-flow: column;
     gap: var(--largeNum);
+    background-color: var(--tertiaryPallete);
+
 }
 
 .nav{
@@ -14,6 +16,8 @@
 .nav button{
     align-self: flex-end;
     padding: var(--smallNum) var(--medNum);
+    background-color: #005c649f;
+    color: var(--tertiaryPallete);
 }
 
 .search-actionbtns{
@@ -23,9 +27,7 @@
 }
 
 .search{
-    background-color: var(--primaryColor);
     padding: var(--smallNum);
-    border-radius: var(--medNum);
     align-self: flex-start;
 }
 .search i{

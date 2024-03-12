@@ -46,7 +46,6 @@ export default class Airport extends Controller{
                     gsap.to(this.domElement.querySelector(".bottomBtnAction"), {x: -100, opacity: 0, display: "none", duration: .2})
                 }
             }
-            this.domElement.querySelector("#delete-all").onclick = () => this.#deleteAll()
         })
     }     
     

@@ -45,16 +45,22 @@ html{
   position: relative;
 }
 
+body{
+    background-color: var(--primaryPallete);
+    text-shadow: 3px 3px 5px black;
+}
+
 .bgBox{
     position: fixed;
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: #005c64b6;
+    background-color: var(--tertiaryPallete);
     background-image: url("/lib/images/static/other/patt.png");
-    background-blend-mode: luminosity;
-    opacity: .3;
+    background-blend-mode: darken;
+    opacity: .1;
 }
+
 .imgageholder{
     overflow: hidden;
 }
@@ -70,13 +76,14 @@ html{
     padding: var(--baseNum);
     gap: var(--smallNum);
     font-family: var(--secondFont);
-    font-size: var(--medNum);
+    font-size: 17px;
 }
 .logoTab img{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    filter: drop-shadow(3px 3px 5px black);
 }
 
 .err-msg{
@@ -135,8 +142,10 @@ button p{
     pointer-events: none;
 }
 .primary-btn{
-    background-color: var(--quadtiaryPallete);
-    color: var(--tertiaryPallete);
+    box-shadow: 0px 0px 5px black;
+    background-color: transparent;
+    color: orange;
+    text-shadow: 5px 5px 10px black;
     text-transform: capitalize;
     border-radius: var(--smallNum);
     outline: none;

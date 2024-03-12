@@ -4,30 +4,60 @@ header{
     background-size: cover;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.434);
-    background-image: url(../../lib/images/static/pexels-pixabay-62623.jpg);
+    background-image: url(../../lib/images/static/carousel/car1.jpg);
     background-blend-mode: hue;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
     gap: var(--medNum);
+    animation: animate 40s linear infinite;
+}
+
+@keyframes animate {
+    0%,100%{
+        background-image: url(../../lib/images/static/carousel/car1.jpg);
+    }
+
+    25%{
+        background-image: url(../../lib/images/static/carousel/car2.jpg);
+    }
+
+    50%{
+        background-image: url(../../lib/images/static/carousel/car3.jpg);
+    }
+
+    75%{
+        background-image: url(../../lib/images/static/carousel/car4.jpg);
+    }
+}
+.hd-bd{
+    padding: var(--largeNum);
+    border: 1px solid orange;
+    border-radius: var(--smallNum);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: 0px 0px 10px black;
 }
 .title-text{
     font-size: calc(var(--largeNum) + 20px);
     text-transform: uppercase;
     text-align: center;
+    text-shadow: 4px 4px 15px black;
     color: var(--tertiaryPallete);
 }
-header > button{
+header button{
     padding: var(--smallNum) var(--medNum);
     background-color: transparent;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.437);
+    border: 1px solid rgba(255, 255, 255, .5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0);
     text-transform: capitalize;
-    border: none;
+    outline: none;
     font-size: calc(var(--largeNum) - 5px);
     color: var(--tertiaryPallete);
     cursor: pointer;
-    border-radius: var(--medNum);
+    border-radius: var(--smallNum);
     backdrop-filter: blur(10px);
     transition: .3s;
 }
@@ -36,18 +66,46 @@ header > button:hover{
 }
 
 section:not(.float){
-    background-color: var(--tertiaryPallete);
     border-radius: var(--smallNum);
     margin: var(--medNum) auto;
     width: 100%;
     max-width: 1000px;
-    box-shadow: 5px 5px 10px;
     padding: var(--medNum);
 }
 
-section:not(.float)> h2{
+section:not(.flights){
+    box-shadow: 0px 0px 5px;
+}
+
+section:is(.airports, .planes, .contact){
+    position: relative;
+}
+section:is(.airports, .planes, .contact)::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--smallNum);
+    background-attachment: fixed;
+    opacity: .5;
+    z-index: -1;
+    background-color: var(--tertiaryPallete);
+    background-image: url("/lib/images/static/other/patt.png");
+    background-blend-mode: darken;
+}
+
+section:not(.float) > h2{
     text-transform: capitalize;
     font-family: var(--titleFont);
+    text-align: center;
+    color: orange
+}
+
+section:not(.float)> p{
+    font-size: 17px;
+    color: var(--primaryColor);
 }
 
 .flights{
@@ -59,6 +117,8 @@ section:not(.float)> h2{
     height: 300px;
     object-fit: cover;
     border-radius: var(--smallNum);
+    box-shadow: 0px 0px 5px;
+    margin-bottom: var(--largeNum);
 }
 
 .flights > p{
@@ -69,18 +129,26 @@ section:not(.float)> h2{
 .list{
     width: 100%;
     height: max-content;
-    background-color: var(--primaryColor);
     padding: var(--medNum);
+    box-shadow: 0px 0px 5px;
     border-radius: var(--smallNum);
 }
 .table{
     gap: var(--medNum);
     display: none;
     flex-flow: column;
+    gap: var(--medNum);
+    color: var(--tertiaryPallete);
 }
 .row, .b-row{
     width: 100%;
     display: flex;
+}
+.row{
+    font-family: var(--baseFont);
+}
+.b-row{
+    font-family: var(--titleFont);
 }
 .row .cell, .b-row .cell{
     flex: 1;
@@ -100,11 +168,14 @@ section:not(.float)> h2{
 }
 .cell button{
     padding: var(--smallNum) var(--largeNum);
-    background-color: var(--quadtiaryPallete);
-    color: var(--primaryColor);
+    background-color: transparent;
+    box-shadow: 0px 0px 5px black;
+    color: orange;
     text-transform: capitalize;
     border-radius: var(--smallNum);
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 .loader{
@@ -137,12 +208,9 @@ section:not(.float)> h2{
 .abt:nth-child(2) h3{
     align-self: flex-end;
 }
-.abt:nth-child(2) p{
-    text-align: end;
-}
-
 .contact >p{
     margin-top: var(--largeNum);
+    font-family: var(--titleFont);
 }
 
 .conHold{
@@ -161,8 +229,17 @@ section:not(.float)> h2{
     display: flex;
     margin: var(--medNum) 0;
 }
+.info h3{
+    color: orange;
+    font-family: var(--baseFont);
+} 
+.info p{
+    color: var(--tertiaryPallete);
+    font-family: var(--titleFont);
+}
 .iconspace{
     flex: 1;
+    color: orange;
 }
 .infospace{
     flex: 10;
@@ -174,9 +251,21 @@ section:not(.float)> h2{
     display: flex;
     flex-flow: column;
 }
+.comInput h2{
+    font-family: var(--baseFont);
+    color: orange;
+}
+.comInput input{
+    border-color: var(--primaryPallete);
+    box-shadow: 0px 0px 5px black;
+}
+.comInput input::placeholder{
+    color: var(--tertiaryPallete);
+}
 textarea{
     resize: none;
-    border: solid 1px;
+    border-color: var(--primaryPallete);
+    box-shadow: 0px 0px 5px black;
     border-radius: var(--smallNum);
     background-color: transparent;
     height: 100px;
@@ -195,15 +284,63 @@ textarea{
     color: var(--primaryColor);
 }
 footer{
-    height: 70px;
+    height: 240px;
     background-color: var(--quadtiaryPallete);
+    background-blend-mode: darken;
+    background-image: url(../../lib/images/static/other/fli.jpg);
     color: var(--tertiaryPallete);
     text-transform: capitalize;
     font-size: var(--largeNum);
-    display: grid;
-    place-items: center;
-    text-align: center;
+    display: flex;
+    flex-flow: column;
+    padding: var(--largeNum) var(--medNum);
 }
+
+.logHold{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.logHold img{
+    width: 40px;
+    height: 40px;
+}
+.logHold p{
+    font-size: 17px;
+}
+.foots{
+    flex: 5;
+    display: flex;
+    justify-content: space-evenly;
+    gap: var(--largeNum);
+}
+
+.foots ul li:nth-child(1){
+    color: orange;
+    font-size: 20px;
+    cursor: auto;
+}
+
+.foots li{
+    font-size: 17px;
+    margin: var(--smallNum) 0;
+    list-style: none;
+    cursor: pointer;
+}
+.footInfo{
+    width: 250px;
+    height: 150px;
+    font-size: var(--medNum);
+    display: flex;
+    flex-flow: column;
+    gap: var(--medNum);
+}
+
+.footInfo i{
+    margin-right: var(--medNum);
+    color: orange;
+}
+
 .portslist{
     display: block;
     margin-top: var(--medNum);
@@ -215,6 +352,7 @@ footer{
     display: flex;
     flex-flow: column;
     gap: var(--medNum);
+    color: var(--primaryColor);
     font-family: var(--titleFont);
     margin: 0 auto;
     align-items: center;
@@ -224,7 +362,7 @@ footer{
     height: 200px;
     overflow: hidden;
     border-radius: var(--smallNum);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.488);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.488);
 }
 .portBoxImgBox img{
     width: 100%;
@@ -240,9 +378,12 @@ footer{
     width: 300px;
     height: 250px;
     display: flex;
+    color: var(--primaryColor);
     text-transform: capitalize;
     align-items: center;
+    font-family: var(--titleFont);
     flex-flow: column;
+    margin: 0 auto;
     gap: var(--medNum);
 }
 .planeBox img{
@@ -250,7 +391,7 @@ footer{
     height: 200px;
     object-fit: cover;
     border-radius: var(--smallNum);
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.488);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.488);
 }
 
 .abt{
@@ -280,7 +421,7 @@ footer{
 .img img{
     width: 80%;
     border-radius: var(--smallNum);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.437);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.437);
 }
 
 .classes h2{
@@ -289,6 +430,14 @@ footer{
 
 .classes h3{
     text-transform: capitalize;
+}
+.classes h3, .about h3{
+    color: orange;
+    font-family: var(--baseFont);
+}
+.classes p, .about p{
+    color: var(--tertiaryPallete);
+    font-family: var(--titleFont);
 }
 
 .clsType{

@@ -6,16 +6,18 @@
     grid-template-rows: 1fr 4fr;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--medNum);
+    background-color: var(--primaryPallete);
 }
 
 .minibox{
     border-radius: var(--medNum);
-    background-color: var(--primaryPallete);
+    box-shadow: 0px 0px 10px;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: space-evenly;
     font-family: var(--baseFont);
+    background-color: var(--tertiaryPallete);
 }
 
 .minibox p{
@@ -24,8 +26,9 @@
 }
 
 .flightList{
-    background-color: var(--primaryPallete);
+    background-color: var(--tertiaryPallete);
     border-radius: var(--medNum);
+    box-shadow: 0px 0px 10px;
     padding: var(--medNum);
 }
 .row.head{
@@ -47,8 +50,9 @@ h2{
 }
 
 .mesagebox{
-    background-color: var(--primaryPallete);
+    background-color: var(--tertiaryPallete);
     padding: var(--medNum);
+    box-shadow: 0px 0px 10px;
     border-radius: var(--medNum);
 }
 

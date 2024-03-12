@@ -10,6 +10,8 @@
     font-family: var(--baseFont);
     text-transform: uppercase;
     margin-bottom: var(--largeNum);
+    color: var(--tertiaryPallete);
+    text-shadow: 0px 0px 5px black;
 }
 
 .two button{

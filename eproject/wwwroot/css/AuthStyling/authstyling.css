@@ -3,7 +3,7 @@ main:has(.signin-component){
     grid-template-areas: "navbar" "signin" "footer";
 }
 .logoTab{
-    color: var(--quadtiaryPallete);
+    color: var(--primaryColor);
 }
 main:has(.signup-component){
     grid-template-areas: "navbar" "signup" "footer";
@@ -41,13 +41,18 @@ label{
 
 input[type="text"], input[type="number"], input[type="password"],input[type="email"]{
     height: 35px;
-    border-radius: var(--medNum);
+    border-radius: var(--smallNum);
     width: 100%;
     outline: none;
-    border: none;
+    border: 1px solid var(--quadtiaryPallete);
+    box-shadow: 0px 0px 5px var(--quadtiaryPallete);
     padding: 0 var(--medNum);
     margin-bottom: var(--smallNum);
-    background-color: var(--tertiaryPallete);
+    background-color: transparent;
+    color: var(--primaryColor);
+}
+input::placeholder{
+    color: var(--primaryColor);
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button{
@@ -74,9 +79,11 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--medNum );
-    background-color: var(--quadtiaryPallete);
-    color: var(--tertiaryPallete);
+    border-radius: var(--smallNum);
+    background-color: transparent;
+    color: orange;
+    text-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 10px black;
     width: 200px;
     align-self: center;
     text-transform: uppercase;
@@ -106,18 +113,19 @@ button{
     font-size: var(--medNum);
     gap: var(--medNum);
     font-family: var(--secondFont);
+    color: var(--primaryColor);
     align-self: flex-end;
 }
 .signFoot a{
     text-decoration: none;
-    color: var(--quadtiaryPallete);
+    color: orange;
     font-size: calc(var(--medNum) + 2px);
 }
 
 .passCon{
     display: flex;
-    background-color: var(--tertiaryPallete);
-    border-radius: var(--medNum);
+    border-radius: var(--smallNum);
+    color: orange;
     align-items: center;
     gap: var(--medNum);
     padding: 0 var(--medNum);
@@ -127,7 +135,7 @@ button{
     margin: 0;
 }
 .pass-point{
-    color: black;
+    color: var(--primaryColor);
     font-family: var(--secondFont);
     margin: var(--smallNum) var(--medNum);
 }

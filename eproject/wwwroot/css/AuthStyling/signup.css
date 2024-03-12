@@ -3,13 +3,49 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    width: 50%;
+    min-width: 320px;
+    box-shadow: 0px 0px 5px black;
+    position: relative;
     gap: var(--medNum);  
 }
+#fft{
+    cursor: pointer;
+}
+.signup-component >i{
+    align-self: flex-end;
+    margin-right: var(--largeNum);
+    color: orange;
+}
+.signup-component button{
+    border-radius: var(--smallNum);
+}
+.signup-component::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--smallNum);
+    background-attachment: fixed;
+    opacity: .5;
+    z-index: -1;
+    background-color: var(--tertiaryPallete);
+    background-image: url("/lib/images/static/other/patt.png");
+    background-blend-mode: darken;
+}
+
 .signup-component > h1{
     text-transform: uppercase;
+    color: orange;
+    font-family: var(--baseFont);
 }
 .signup-component > p{
+    font-family: var(--titleFont);
     text-transform: capitalize;
+    color: var(--primaryColor);
 }
 .twoInputHold{
     display: flex;
@@ -30,6 +66,8 @@
 }
 .twoRadioHold label p{
     font-size: var(--medNum);
+    color: var(--primaryColor);
+    font-family: var(--titleFont);
 }
 .twoRadioHold label input{
     width: 40px;
@@ -48,13 +86,12 @@
 }
 .numInp{
     display: flex;
-    background-color: var(--tertiaryPallete);
-    border-radius: var(--medNum);
+    border-radius: var(--smallNum);
     display: flex;
     align-items: center;
 }
 .numInp p{
-    color: var(--quadtiaryPallete);
+    color: orange;
     font-size: var(--medNum);
     border-right: solid 1px gray;
     padding-right: var(--medNum);

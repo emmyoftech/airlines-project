@@ -3,14 +3,48 @@
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    width: 50%;
+    min-width: 320px;
+    align-self: center;
+    margin: 0 auto;
+    position: relative;
+    padding: var(--largeNum) var(--medNum);
     gap: var(--medNum);
+    box-shadow: 0px 0px 5px black;
 }
+#fft{
+    cursor: pointer;
+}
+.signin-component >i{
+    align-self: flex-end;
+    color: orange;
+    margin-right: var(--largeNum);
+}
+.signin-component::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--smallNum);
+    background-attachment: fixed;
+    opacity: .5;
+    z-index: -1;
+    background-color: var(--tertiaryPallete);
+    background-image: url("/lib/images/static/other/patt.png");
+    background-blend-mode: darken;
+}
+
 .signin-component > h1{
     text-transform: uppercase;
     font-family: var(--baseFont);
+    color: orange;
 }
 .signin-component > p{
     text-transform: capitalize;
+    color: var(--primaryColor);
+    font-family: var(--titleFont);
 }
 .form .passCon{
     padding: 0;
@@ -21,11 +55,16 @@
     align-items: center;
     justify-content: space-between;
     font-family: var(--baseFont);
+    color: var(--primaryColor);
     font-size: calc(var(--medNum) - 1px);
 }
 .foottext a{
     font-size: var(--medNum);
+    color: orange;
 }
 .fp{
     cursor: pointer;
+}
+.signin-component button{
+    border-radius: var(--smallNum);
 }

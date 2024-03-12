@@ -1,8 +1,8 @@
-import BookingCreate from "../../Floats/Booking/booking-create.js";
 import FlightView from "../../Floats/Flights/flight-view.js";
 import AirportModel from "../../interfaces/airportModel.js";
 import FlightModel from "../../interfaces/flightModel.js";
 import PlaneModel from "../../interfaces/planeModel.js";
+import User from "../../interfaces/user.js";
 import { Controller } from "../../services/Controller.js";
 import { env } from "../../services/env.js";
 import FlightCreate from "./flights-create.js";

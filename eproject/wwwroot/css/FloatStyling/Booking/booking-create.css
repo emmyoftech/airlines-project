@@ -5,10 +5,30 @@
 
 .booking-create-float{
     background-color: var(--primaryPallete);
-    width: 70%;
+    width: 50%;
     display: flex;
     flex-flow: column;
+    box-shadow: 0px 0px 30px black;
+    gap: var(--medNum);
+    text-shadow: none;
 }
+
+.booking-create-float::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--smallNum);
+    background-attachment: fixed;
+    opacity: .1;
+    z-index: -1;
+    background-color: var(--tertiaryPallete);
+    background-image: url("/lib/images/static/other/patt.png");
+    background-blend-mode: darken;
+}
+
 .top{
     display: flex;
     flex: .5;
@@ -17,6 +37,8 @@
     align-items: center;
     max-height: 30px;
     text-transform: capitalize;
+    color: orange;
+    text-shadow: 0px 0px 5px black;
 }
 .booking-create-float h1{
     font-family: var(--titleFont);
@@ -27,4 +49,11 @@
 .booking-stage{
     display: none;
     flex: 7;
+}
+
+.booking-create-float button{
+    background-color: transparent;
+    color: orange;
+    margin-bottom: var(--largeNum);
+    box-shadow: 0px 0px 5px black;
 }

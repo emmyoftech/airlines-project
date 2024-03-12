@@ -4,6 +4,7 @@
     display: flex;
     flex-flow: column;
     gap: var(--medNum);
+    background-color: var(--tertiaryPallete);
 }
 .nav{
     display: flex;
@@ -15,8 +16,13 @@
 .nav button{
     align-self: flex-end;
     padding: var(--smallNum) var(--medNum);
-    background-color: var(--quadtiaryPallete);
+    align-self: flex-end;
+    background-color: #005c649f;
     color: var(--tertiaryPallete);
+    box-shadow: 0px 0px 5px black;
+    text-shadow: 5px 5px 10px black;
+    border: none;
+    outline: none;
     border-radius: var(--smallNum);
     text-transform: capitalize;
 }
@@ -28,9 +34,8 @@
 }
 
 .search{
-    background-color: var(--primaryColor);
     padding: var(--smallNum);
-    border-radius: var(--medNum);
+    border-radius: 7px;
 }
 .search i{
     font-size: var(--medNum);
@@ -40,7 +45,7 @@
     outline: none;
     height: 25px;
     width: 150px;
-    background-color: inherit;
+    background-color: transparent;
     padding: 0 var(--medNum);
 }
 .actionBtns{
@@ -61,7 +66,7 @@
 .actionBtns span i{pointer-events: none;}
 
 .fa-trash-can{
-    color: var(--err-red);
+    color: orange;
 }
 .airport-list{
     flex: 5;
@@ -101,4 +106,8 @@
     transform: translate(-50%, -50%) rotate(-30deg);
     border-left: solid 2px var(--primaryColor);
     border-bottom: solid 2px var(--primaryColor);
+}
+
+#select-all{
+    display: none;
 }

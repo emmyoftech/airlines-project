@@ -5,7 +5,9 @@
     display: grid;
     place-items: center;
     top: 0%;
-    background: rgba(0,0,0,.3);
+    text-shadow: none;
+    z-index: 9;
+    background: rgba(0,0,0,.7);
 }
 
 .dialog, .ques, .load{
@@ -14,15 +16,39 @@
     height: max-content;
     min-height: 250px;
     border-radius: var(--medNum);
-    background-color: var(--tertiaryPallete);
+    background-color: var(--primaryPallete);
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
     gap: var(--medNum);
     overflow: hidden;
+    text-shadow: 0px 0px 5px black;
+    position: relative;
 }
+
+.dialog *, .ques *, .load *{
+    z-index: 2;
+}
+
+.dialog::before, .ques::before, .load::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--smallNum);
+    background-attachment: fixed;
+    opacity: .2;
+    z-index: -1;
+    background-color: var(--tertiaryPallete);
+    background-image: url("/lib/images/static/other/patt.png");
+    background-blend-mode: darken;
+}
+
 .dialog-icon-hold{
+    color: orange;
     width: 50px;
     height: 50px;
     display: grid;
@@ -35,11 +61,13 @@
 }
 .dialog-title, .ques-title{
     text-transform: capitalize;
+    color: orange;
 }
 .dialog-text, .load-text, .ques-text{
     font-family: var(--baseFont);
     text-align: center;
     padding: 0 var(--medNum);
+    color: orange;
 }
 .dialog-text::first-letter, .ques-text::first-letter, .load-text::first-letter{
     text-transform: capitalize;
@@ -47,10 +75,11 @@
 .dialog-btn{
     padding: var(--smallNum) var(--medNum);
     text-transform: capitalize;
-    background-color: var(--quadtiaryPallete);
+    background-color: transparent;
+    box-shadow: 0px 0px 10px black;
     border: none;
     outline: none;
-    color: var(--tertiaryPallete);
+    color: orange;
     border-radius: var(--smallNum);
     cursor: pointer;
 }
@@ -58,7 +87,6 @@
     padding: var(--smallNum) var(--largeNum);
     border-radius: var(--medNum);
     border: solid 1px var(--quadtiaryPallete);
-    color: var(--quadtiaryPallete);
     outline: none;
     cursor: pointer;
     text-transform: capitalize;
